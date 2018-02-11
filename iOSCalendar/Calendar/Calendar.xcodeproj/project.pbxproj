@@ -13,6 +13,12 @@
 		87FB4237203013200003C974 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87FB4236203013200003C974 /* Assets.xcassets */; };
 		87FB423A203013200003C974 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87FB4238203013200003C974 /* LaunchScreen.storyboard */; };
 		87FB4245203013200003C974 /* CalendarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FB4244203013200003C974 /* CalendarTests.swift */; };
+		87FB425320301A460003C974 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FB425220301A460003C974 /* CalendarView.swift */; };
+		87FB425520301A840003C974 /* CalendarHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FB425420301A840003C974 /* CalendarHeaderView.swift */; };
+		87FB4259203024070003C974 /* WeekTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FB4258203024070003C974 /* WeekTitleView.swift */; };
+		87FB425B2030246A0003C974 /* DateFormatter+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FB425A2030246A0003C974 /* DateFormatter+Util.swift */; };
+		87FB425D20302D020003C974 /* CalendarStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FB425C20302D020003C974 /* CalendarStyle.swift */; };
+		87FB425F20302DB80003C974 /* WeekTitleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FB425E20302DB80003C974 /* WeekTitleViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +42,12 @@
 		87FB4240203013200003C974 /* CalendarTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CalendarTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		87FB4244203013200003C974 /* CalendarTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarTests.swift; sourceTree = "<group>"; };
 		87FB4246203013200003C974 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		87FB425220301A460003C974 /* CalendarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		87FB425420301A840003C974 /* CalendarHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarHeaderView.swift; sourceTree = "<group>"; };
+		87FB4258203024070003C974 /* WeekTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekTitleView.swift; sourceTree = "<group>"; };
+		87FB425A2030246A0003C974 /* DateFormatter+Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Util.swift"; sourceTree = "<group>"; };
+		87FB425C20302D020003C974 /* CalendarStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarStyle.swift; sourceTree = "<group>"; };
+		87FB425E20302DB80003C974 /* WeekTitleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekTitleViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,12 +89,14 @@
 		87FB422E203013200003C974 /* Calendar */ = {
 			isa = PBXGroup;
 			children = (
+				87FB425120301A460003C974 /* CalendarView */,
 				87FB422F203013200003C974 /* AppDelegate.swift */,
 				87FB4231203013200003C974 /* ViewController.swift */,
 				87FB4233203013200003C974 /* Main.storyboard */,
 				87FB4236203013200003C974 /* Assets.xcassets */,
 				87FB4238203013200003C974 /* LaunchScreen.storyboard */,
 				87FB423B203013200003C974 /* Info.plist */,
+				87FB425A2030246A0003C974 /* DateFormatter+Util.swift */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -94,6 +108,34 @@
 				87FB4246203013200003C974 /* Info.plist */,
 			);
 			path = CalendarTests;
+			sourceTree = "<group>";
+		};
+		87FB425120301A460003C974 /* CalendarView */ = {
+			isa = PBXGroup;
+			children = (
+				87FB42612030350F0003C974 /* HeaderView */,
+				87FB425220301A460003C974 /* CalendarView.swift */,
+				87FB425C20302D020003C974 /* CalendarStyle.swift */,
+			);
+			path = CalendarView;
+			sourceTree = "<group>";
+		};
+		87FB4260203034F30003C974 /* WeekTitleView */ = {
+			isa = PBXGroup;
+			children = (
+				87FB4258203024070003C974 /* WeekTitleView.swift */,
+				87FB425E20302DB80003C974 /* WeekTitleViewModel.swift */,
+			);
+			path = WeekTitleView;
+			sourceTree = "<group>";
+		};
+		87FB42612030350F0003C974 /* HeaderView */ = {
+			isa = PBXGroup;
+			children = (
+				87FB425420301A840003C974 /* CalendarHeaderView.swift */,
+				87FB4260203034F30003C974 /* WeekTitleView */,
+			);
+			path = HeaderView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -199,8 +241,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87FB425D20302D020003C974 /* CalendarStyle.swift in Sources */,
+				87FB4259203024070003C974 /* WeekTitleView.swift in Sources */,
+				87FB425B2030246A0003C974 /* DateFormatter+Util.swift in Sources */,
 				87FB4232203013200003C974 /* ViewController.swift in Sources */,
+				87FB425520301A840003C974 /* CalendarHeaderView.swift in Sources */,
+				87FB425F20302DB80003C974 /* WeekTitleViewModel.swift in Sources */,
 				87FB4230203013200003C974 /* AppDelegate.swift in Sources */,
+				87FB425320301A460003C974 /* CalendarView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -353,12 +401,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Q8K276U645;
 				INFOPLIST_FILE = Calendar/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = mycom.Calendar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -368,12 +418,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Q8K276U645;
 				INFOPLIST_FILE = Calendar/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = mycom.Calendar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
