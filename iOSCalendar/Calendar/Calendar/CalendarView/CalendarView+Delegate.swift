@@ -1,5 +1,5 @@
 //
-//  CalendarStyle.swift
+//  CalendarView+Delegate.swift
 //  Calendar
 //
 //  Created by Vinodh Govind Swamy on 2/11/18.
@@ -9,8 +9,6 @@
 import Foundation
 import UIKit
 
-extension CalendarView {
+extension CalendarView : UICollectionViewDelegate {
     
-    // DayCell
-    static var dayCellMaxHeight : CGFloat = 60.0
 }

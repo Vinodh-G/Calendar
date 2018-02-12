@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8775BBB520305064005DAF59 /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8775BBB420305064005DAF59 /* CalendarViewModel.swift */; };
+		8775BBB720305345005DAF59 /* CalendarMonthLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8775BBB620305345005DAF59 /* CalendarMonthLayout.swift */; };
+		8775BBBA2030C0F7005DAF59 /* CalendarView+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8775BBB92030C0F7005DAF59 /* CalendarView+Delegate.swift */; };
 		87FB4230203013200003C974 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FB422F203013200003C974 /* AppDelegate.swift */; };
 		87FB4232203013200003C974 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FB4231203013200003C974 /* ViewController.swift */; };
 		87FB4235203013200003C974 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87FB4233203013200003C974 /* Main.storyboard */; };
@@ -19,6 +22,9 @@
 		87FB425B2030246A0003C974 /* DateFormatter+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FB425A2030246A0003C974 /* DateFormatter+Util.swift */; };
 		87FB425D20302D020003C974 /* CalendarStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FB425C20302D020003C974 /* CalendarStyle.swift */; };
 		87FB425F20302DB80003C974 /* WeekTitleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FB425E20302DB80003C974 /* WeekTitleViewModel.swift */; };
+		87FB4263203036290003C974 /* CalendarView+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FB4262203036290003C974 /* CalendarView+DataSource.swift */; };
+		87FB42672030395C0003C974 /* CalendarDayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FB42662030395C0003C974 /* CalendarDayCell.swift */; };
+		87FB4269203039870003C974 /* CalendarDayCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87FB4268203039870003C974 /* CalendarDayCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,6 +38,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8775BBB420305064005DAF59 /* CalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
+		8775BBB620305345005DAF59 /* CalendarMonthLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarMonthLayout.swift; sourceTree = "<group>"; };
+		8775BBB92030C0F7005DAF59 /* CalendarView+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CalendarView+Delegate.swift"; sourceTree = "<group>"; };
 		87FB422C203013200003C974 /* Calendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Calendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		87FB422F203013200003C974 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		87FB4231203013200003C974 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -48,6 +57,9 @@
 		87FB425A2030246A0003C974 /* DateFormatter+Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Util.swift"; sourceTree = "<group>"; };
 		87FB425C20302D020003C974 /* CalendarStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarStyle.swift; sourceTree = "<group>"; };
 		87FB425E20302DB80003C974 /* WeekTitleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekTitleViewModel.swift; sourceTree = "<group>"; };
+		87FB4262203036290003C974 /* CalendarView+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CalendarView+DataSource.swift"; sourceTree = "<group>"; };
+		87FB42662030395C0003C974 /* CalendarDayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDayCell.swift; sourceTree = "<group>"; };
+		87FB4268203039870003C974 /* CalendarDayCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalendarDayCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +80,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8775BBB820308F4B005DAF59 /* CalendarDayCell */ = {
+			isa = PBXGroup;
+			children = (
+				87FB42662030395C0003C974 /* CalendarDayCell.swift */,
+				87FB4268203039870003C974 /* CalendarDayCell.xib */,
+			);
+			path = CalendarDayCell;
+			sourceTree = "<group>";
+		};
 		87FB4223203013200003C974 = {
 			isa = PBXGroup;
 			children = (
@@ -114,7 +135,12 @@
 			isa = PBXGroup;
 			children = (
 				87FB42612030350F0003C974 /* HeaderView */,
+				8775BBB820308F4B005DAF59 /* CalendarDayCell */,
 				87FB425220301A460003C974 /* CalendarView.swift */,
+				8775BBB420305064005DAF59 /* CalendarViewModel.swift */,
+				8775BBB620305345005DAF59 /* CalendarMonthLayout.swift */,
+				87FB4262203036290003C974 /* CalendarView+DataSource.swift */,
+				8775BBB92030C0F7005DAF59 /* CalendarView+Delegate.swift */,
 				87FB425C20302D020003C974 /* CalendarStyle.swift */,
 			);
 			path = CalendarView;
@@ -221,6 +247,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87FB4269203039870003C974 /* CalendarDayCell.xib in Resources */,
 				87FB423A203013200003C974 /* LaunchScreen.storyboard in Resources */,
 				87FB4237203013200003C974 /* Assets.xcassets in Resources */,
 				87FB4235203013200003C974 /* Main.storyboard in Resources */,
@@ -243,11 +270,16 @@
 			files = (
 				87FB425D20302D020003C974 /* CalendarStyle.swift in Sources */,
 				87FB4259203024070003C974 /* WeekTitleView.swift in Sources */,
+				8775BBBA2030C0F7005DAF59 /* CalendarView+Delegate.swift in Sources */,
 				87FB425B2030246A0003C974 /* DateFormatter+Util.swift in Sources */,
 				87FB4232203013200003C974 /* ViewController.swift in Sources */,
+				87FB42672030395C0003C974 /* CalendarDayCell.swift in Sources */,
 				87FB425520301A840003C974 /* CalendarHeaderView.swift in Sources */,
+				8775BBB720305345005DAF59 /* CalendarMonthLayout.swift in Sources */,
 				87FB425F20302DB80003C974 /* WeekTitleViewModel.swift in Sources */,
 				87FB4230203013200003C974 /* AppDelegate.swift in Sources */,
+				87FB4263203036290003C974 /* CalendarView+DataSource.swift in Sources */,
+				8775BBB520305064005DAF59 /* CalendarViewModel.swift in Sources */,
 				87FB425320301A460003C974 /* CalendarView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

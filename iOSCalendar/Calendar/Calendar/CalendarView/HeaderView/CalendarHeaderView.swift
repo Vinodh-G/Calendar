@@ -26,5 +26,4 @@ class CalendarHeaderView: UIView {
         super.layoutSubviews()
         weekTitleView.layoutIfNeeded()
     }
-    
 }
