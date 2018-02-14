@@ -13,11 +13,13 @@ let kDayCellId = "DayCellId"
 class CalendarView: UIView {
     var headerView     : CalendarHeaderView!
     var collectionView : UICollectionView!
-    var viewModel      : CalendarViewDataSource = CalendarViewModel()
+    var viewModel      : CalendarMonthViewModel = CalendarMonthViewModel()
     
     var calendarLayout : CalendarMonthLayout {
         return self.collectionView.collectionViewLayout as! CalendarMonthLayout
     }
+    
+    var startPoint     : CGPoint = CGPoint.zero
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -27,6 +29,8 @@ class CalendarView: UIView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.setUp()
+        // TODO: to be removed, added just for testing.
+        viewModel.selectedDate = Date()
     }
     
     func setUp() {
@@ -50,6 +54,7 @@ class CalendarView: UIView {
         collectionView.backgroundColor = UIColor.clear
         collectionView.register(UINib(nibName: "CalendarDayCell", bundle: nil), forCellWithReuseIdentifier: kDayCellId)
         self.addSubview(collectionView)
+        addPanGesture()
     }
     
     override open func layoutSubviews() {
@@ -77,10 +82,20 @@ class CalendarView: UIView {
     }
 }
 
-extension UICollectionView {
-    override open var contentSize : CGSize{
-        didSet {
-            print(contentSize)
+extension CalendarView {
+    
+    func addPanGesture() {
+        let pangesture = UIPanGestureRecognizer(target: self, action: #selector(CalendarView.handlePan(gesture:)))
+        addGestureRecognizer(pangesture)
+    }
+    
+    @objc func handlePan(gesture:UIPanGestureRecognizer) {
+        let point = gesture.location(in: self)
+        switch gesture.state {
+        case .began:
+            startPoint = point
+        case .changed: break
+        default: break
         }
     }
 }

@@ -12,16 +12,16 @@ import UIKit
 extension CalendarView : UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return viewModel.months
+        return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.daysFor(month: section)
+        return viewModel.numOfDaySlotFor(month: 1)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: kDayCellId, for: indexPath) as! CalendarDayCell
-        cell.dayTitleLabel.text = "\(indexPath.row + 1)"
+        cell.dayTitleLabel.text = viewModel.dayStringFor(slot: indexPath.item)
         return cell
     }
 }

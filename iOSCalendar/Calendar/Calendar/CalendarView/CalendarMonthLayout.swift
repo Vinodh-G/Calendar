@@ -60,7 +60,6 @@ class CalendarMonthLayout: UICollectionViewFlowLayout {
             cellYOffset += offset * collectionView.frame.size.height
         }
         
-        print("X:\(cellXOffset) Y:\(cellYOffset)")
         attributes.frame = CGRect(x: cellXOffset,
                                   y: cellYOffset,
                                   width: itemSize.width,
