@@ -9,6 +9,14 @@
 import Foundation
 import UIKit
 
-extension CalendarView : UICollectionViewDelegate {
+extension CalendarView : UICollectionViewDelegate, UIScrollViewDelegate {
+    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+    }
     
+    //Mark: UIScrollViewDelegate
+    public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let month = visibleMonthForCurrentOffset()
+        updateCalendarViewFor(visibleMonth: month)
+    }
 }

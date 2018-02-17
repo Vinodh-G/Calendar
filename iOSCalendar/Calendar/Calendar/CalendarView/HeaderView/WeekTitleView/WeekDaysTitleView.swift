@@ -8,9 +8,9 @@
 
 import UIKit
 
-class WeekTitleView: UIView {
+class WeekDaysTitleView: UIView {
     
-    var viewModel : WeekTitleViewModel = WeekTitleViewModel()
+    var viewModel : WeekDaysTitleViewModel = WeekDaysTitleViewModel()
     override init(frame: CGRect) {
         super.init(frame:frame)
         self.setUp()
@@ -38,9 +38,9 @@ class WeekTitleView: UIView {
         
         var weekDaylabelFrame = CGRect(
             x: 0.0,
-            y: self.bounds.size.height / 2.0,
+            y: 0.0,
             width: self.bounds.size.width / 7.0,
-            height: self.bounds.size.height / 2.0
+            height: self.bounds.size.height
         )
         
         for weekDayLabel in self.subviews {

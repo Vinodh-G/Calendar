@@ -159,7 +159,7 @@ class Date_Util_Tests: XCTestCase {
     
     func testDateByAddingDaysNegativePreviousMonthYear() {
         var date = Date()
-        // create date 3rd Feb
+        // create date 3rd Jan
         var components =  Calendar.current.dateComponents([.year, .month, .day], from: date)
         components.month = 1
         components.day = 3
@@ -171,5 +171,72 @@ class Date_Util_Tests: XCTestCase {
         XCTAssertEqual(components.day, 30)
         XCTAssertEqual(components.month, 12)
         XCTAssertEqual(components.year, 2017)
+    }
+    
+    func testDateByAddingDays365() {
+        var date = Date()
+        // create date 3rd Jan
+        var components =  Calendar.current.dateComponents([.year, .month, .day], from: date)
+        components.month = 1
+        components.day = 3
+        components.year = 2018
+        date = Calendar.current.date(from: components)!
+        
+        let newDate = date.dateByAdding(days:365)
+        components =  Calendar.current.dateComponents([.year, .month, .day], from: newDate)
+        XCTAssertEqual(components.day, 3)
+        XCTAssertEqual(components.month, 1)
+        XCTAssertEqual(components.year, 2019)
+    }
+    
+    func testDateByAddingDaysNeagative366() {
+        var date = Date()
+        // create date 1rd Jan
+        var components =  Calendar.current.dateComponents([.year, .month, .day], from: date)
+        components.month = 1
+        components.day = 1
+        components.year = 2018
+        date = Calendar.current.date(from: components)!
+        
+        let newDate = date.dateByAdding(days:-366)
+        components =  Calendar.current.dateComponents([.year, .month, .day], from: newDate)
+        XCTAssertEqual(components.day, 31)
+        XCTAssertEqual(components.month, 12)
+        XCTAssertEqual(components.year, 2016)
+    }
+
+    func testDateByAddingMonths() {
+        var date = Date()
+        // create date 3rd Feb
+        var components =  Calendar.current.dateComponents([.year, .month, .day], from: date)
+        components.month = 1
+        components.day = 3
+        components.year = 2018
+        date = Calendar.current.date(from: components)!
+        
+        let newDate = date.dateByAdding(months:24)
+        components =  Calendar.current.dateComponents([.year, .month, .day], from: newDate)
+        XCTAssertEqual(components.year, 2020)
+        XCTAssertEqual(components.month, 1)
+    }
+    
+    func testMonthsBetweenDates() {
+        var date = Date()
+        // create date 3rd Jan
+        var components =  Calendar.current.dateComponents([.year, .month, .day], from: date)
+        components.month = 1
+        components.day = 1
+        components.year = 2018
+        let startdate = Calendar.current.date(from: components)!
+        
+        date = Date()
+        // create date 3rd Feb
+        components =  Calendar.current.dateComponents([.year, .month, .day], from: date)
+        components.month = 12
+        components.day = 10
+        components.year = 2018
+        let enddate = Calendar.current.date(from: components)!
+        let months = Date.monthsBetween(startDate:startdate, endDate:enddate)
+        XCTAssertEqual(months, 11)
     }
 }

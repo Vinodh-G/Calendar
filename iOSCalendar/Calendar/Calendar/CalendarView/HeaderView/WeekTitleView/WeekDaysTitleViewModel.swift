@@ -20,7 +20,7 @@ enum TitleType : Int {
     case firstThreeLetter
 }
 
-class WeekTitleViewModel: NSObject, WeekTitleDataSource{
+class WeekDaysTitleViewModel: NSObject, WeekTitleDataSource{
     
     let formatter = DateFormatter.shared
     let titleType : TitleType = .firstLetter

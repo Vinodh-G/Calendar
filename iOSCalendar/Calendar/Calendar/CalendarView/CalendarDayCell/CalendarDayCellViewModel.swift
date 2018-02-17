@@ -8,10 +8,15 @@
 
 import Foundation
 
-class CalendarDayCellViewModel: NSObject {
+class CalendarDayCellViewModel {
     var date:Date
     init(inDate:Date) {
         date = inDate
-        super.init()
+    }
+    
+    var dayString : String {
+        let components = Calendar.current.dateComponents([.day], from: date) //else { return "" }
+        
+        return "\((components.day as! Int))"
     }
 }

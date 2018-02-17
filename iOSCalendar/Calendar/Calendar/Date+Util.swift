@@ -36,9 +36,27 @@ extension Date {
     }
     
     public func dateByAdding(days:Int) -> Date {
-        var components = Calendar.current.dateComponents([.year, .month, .day], from: self)
-        components.day = components.day! + days
-        guard let newDate = Calendar.current.date(from: components) else { return self }
+        var components = DateComponents()
+        components.day = days
+        guard let newDate = Calendar.current.date(byAdding: components, to: self) else { return self }
         return newDate
+    }
+    
+    public func dateByAdding(months:Int) -> Date {
+        var components = DateComponents()
+        components.month = months
+        guard let newDate = Calendar.current.date(byAdding: components, to: self) else { return self}
+        return newDate
+    }
+    
+    public static func monthsBetween(startDate:Date, endDate:Date) -> Int {
+        let components = Calendar.current.dateComponents([.year, .month, .day], from: startDate, to: endDate)
+        var months = 0
+        if components.year! > 0 {
+            months = components.year! * 12
+        } else if components.month! > 0  {
+            months = components.month!
+        }
+        return months
     }
 }

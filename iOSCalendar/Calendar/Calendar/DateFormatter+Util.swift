@@ -10,7 +10,7 @@ import Foundation
 
 public let kFullDateFormat = "yyyy-MM-dd HH:mm:ss"
 public let kDateFormat = "yyyy-MM-dd"
-
+public let kFullMonthNameFormat = "MMMM"
 extension DateFormatter {
 
     static let shared : DateFormatter = {
@@ -19,4 +19,10 @@ extension DateFormatter {
         instance.dateFormat = kFullDateFormat
         return instance
     }()
+    
+    func monthTitleFor(date:Date) -> String {
+        self.dateFormat = kFullMonthNameFormat
+        let monthTitle = self.string(from: date)
+        return monthTitle
+    }
 }

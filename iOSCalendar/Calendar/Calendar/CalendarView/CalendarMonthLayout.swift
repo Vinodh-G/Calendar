@@ -27,7 +27,7 @@ class CalendarMonthLayout: UICollectionViewFlowLayout {
             
             var elementAttributes = layoutInfoCache[attributes.indexPath]
             if elementAttributes == nil {
-                elementAttributes = UICollectionViewLayoutAttributes(forCellWith: attributes.indexPath) //attributes.copy() as? UICollectionViewLayoutAttributes
+                elementAttributes = UICollectionViewLayoutAttributes(forCellWith: attributes.indexPath)
                 layoutInfoCache[elementAttributes!.indexPath] = elementAttributes
             }
             self.applyMonthLayoutAttributes(attributes: elementAttributes!)
