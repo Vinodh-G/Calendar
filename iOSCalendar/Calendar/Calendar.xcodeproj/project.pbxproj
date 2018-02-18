@@ -11,6 +11,13 @@
 		8775BBB720305345005DAF59 /* CalendarMonthLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8775BBB620305345005DAF59 /* CalendarMonthLayout.swift */; };
 		8775BBBA2030C0F7005DAF59 /* CalendarView+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8775BBB92030C0F7005DAF59 /* CalendarView+Delegate.swift */; };
 		879FB359203821DD00033E0E /* MonthTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879FB358203821DD00033E0E /* MonthTitleView.swift */; };
+		879FB3B02039EECE00033E0E /* AgendaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879FB3AF2039EECE00033E0E /* AgendaViewController.swift */; };
+		879FB3B32039EF9800033E0E /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 879FB3B22039EF9800033E0E /* EventKit.framework */; };
+		879FB3B72039F1E700033E0E /* AgendaView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 879FB3B62039F1E700033E0E /* AgendaView.storyboard */; };
+		879FB3B92039F23600033E0E /* AgendaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879FB3B82039F23600033E0E /* AgendaViewModel.swift */; };
+		879FB3BB2039F77800033E0E /* CalendarEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879FB3BA2039F77800033E0E /* CalendarEvent.swift */; };
+		879FB3BD2039F9A900033E0E /* DayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879FB3BC2039F9A900033E0E /* DayViewModel.swift */; };
+		879FB3BF2039FA5600033E0E /* EventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879FB3BE2039FA5600033E0E /* EventViewModel.swift */; };
 		87B95C43203482DF004DAC97 /* Date+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B95C42203482DF004DAC97 /* Date+Util.swift */; };
 		87B95C45203485A0004DAC97 /* Date+Util_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B95C44203485A0004DAC97 /* Date+Util_Tests.swift */; };
 		87B95C6E2034C57D004DAC97 /* CalendarDayCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B95C6D2034C57D004DAC97 /* CalendarDayCellViewModel.swift */; };
@@ -47,6 +54,13 @@
 		8775BBB620305345005DAF59 /* CalendarMonthLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarMonthLayout.swift; sourceTree = "<group>"; };
 		8775BBB92030C0F7005DAF59 /* CalendarView+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CalendarView+Delegate.swift"; sourceTree = "<group>"; };
 		879FB358203821DD00033E0E /* MonthTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthTitleView.swift; sourceTree = "<group>"; };
+		879FB3AF2039EECE00033E0E /* AgendaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgendaViewController.swift; sourceTree = "<group>"; };
+		879FB3B22039EF9800033E0E /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
+		879FB3B62039F1E700033E0E /* AgendaView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AgendaView.storyboard; sourceTree = "<group>"; };
+		879FB3B82039F23600033E0E /* AgendaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaViewModel.swift; sourceTree = "<group>"; };
+		879FB3BA2039F77800033E0E /* CalendarEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEvent.swift; sourceTree = "<group>"; };
+		879FB3BC2039F9A900033E0E /* DayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayViewModel.swift; sourceTree = "<group>"; };
+		879FB3BE2039FA5600033E0E /* EventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewModel.swift; sourceTree = "<group>"; };
 		87B95C42203482DF004DAC97 /* Date+Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Util.swift"; sourceTree = "<group>"; };
 		87B95C44203485A0004DAC97 /* Date+Util_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Util_Tests.swift"; sourceTree = "<group>"; };
 		87B95C6D2034C57D004DAC97 /* CalendarDayCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDayCellViewModel.swift; sourceTree = "<group>"; };
@@ -77,6 +91,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				879FB3B32039EF9800033E0E /* EventKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,12 +115,33 @@
 			path = CalendarDayCell;
 			sourceTree = "<group>";
 		};
+		879FB3AE2039EECE00033E0E /* AgendaView */ = {
+			isa = PBXGroup;
+			children = (
+				879FB3AF2039EECE00033E0E /* AgendaViewController.swift */,
+				879FB3B82039F23600033E0E /* AgendaViewModel.swift */,
+				879FB3BC2039F9A900033E0E /* DayViewModel.swift */,
+				879FB3BE2039FA5600033E0E /* EventViewModel.swift */,
+				879FB3B62039F1E700033E0E /* AgendaView.storyboard */,
+			);
+			path = AgendaView;
+			sourceTree = "<group>";
+		};
+		879FB3B12039EF9800033E0E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				879FB3B22039EF9800033E0E /* EventKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		87FB4223203013200003C974 = {
 			isa = PBXGroup;
 			children = (
 				87FB422E203013200003C974 /* Calendar */,
 				87FB4243203013200003C974 /* CalendarTests */,
 				87FB422D203013200003C974 /* Products */,
+				879FB3B12039EF9800033E0E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -121,6 +157,7 @@
 		87FB422E203013200003C974 /* Calendar */ = {
 			isa = PBXGroup;
 			children = (
+				879FB3AE2039EECE00033E0E /* AgendaView */,
 				87FB425120301A460003C974 /* CalendarView */,
 				87FB422F203013200003C974 /* AppDelegate.swift */,
 				87FB4231203013200003C974 /* ViewController.swift */,
@@ -130,6 +167,7 @@
 				87FB423B203013200003C974 /* Info.plist */,
 				87FB425A2030246A0003C974 /* DateFormatter+Util.swift */,
 				87B95C42203482DF004DAC97 /* Date+Util.swift */,
+				879FB3BA2039F77800033E0E /* CalendarEvent.swift */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -264,6 +302,7 @@
 			files = (
 				87FB4269203039870003C974 /* CalendarDayCell.xib in Resources */,
 				87FB423A203013200003C974 /* LaunchScreen.storyboard in Resources */,
+				879FB3B72039F1E700033E0E /* AgendaView.storyboard in Resources */,
 				87FB4237203013200003C974 /* Assets.xcassets in Resources */,
 				87FB4235203013200003C974 /* Main.storyboard in Resources */,
 			);
@@ -286,11 +325,15 @@
 				87FB425D20302D020003C974 /* CalendarStyle.swift in Sources */,
 				87FB4259203024070003C974 /* WeekDaysTitleView.swift in Sources */,
 				8775BBBA2030C0F7005DAF59 /* CalendarView+Delegate.swift in Sources */,
+				879FB3BF2039FA5600033E0E /* EventViewModel.swift in Sources */,
 				87FB425B2030246A0003C974 /* DateFormatter+Util.swift in Sources */,
 				87FB4232203013200003C974 /* ViewController.swift in Sources */,
 				879FB359203821DD00033E0E /* MonthTitleView.swift in Sources */,
 				87FB42672030395C0003C974 /* CalendarDayCell.swift in Sources */,
+				879FB3B92039F23600033E0E /* AgendaViewModel.swift in Sources */,
 				87FB425520301A840003C974 /* CalendarHeaderView.swift in Sources */,
+				879FB3B02039EECE00033E0E /* AgendaViewController.swift in Sources */,
+				879FB3BB2039F77800033E0E /* CalendarEvent.swift in Sources */,
 				8775BBB720305345005DAF59 /* CalendarMonthLayout.swift in Sources */,
 				87E9E05D2036012E00CA21BA /* CalendarViewModel.swift in Sources */,
 				87FB425F20302DB80003C974 /* WeekDaysTitleViewModel.swift in Sources */,
@@ -298,6 +341,7 @@
 				87FB4263203036290003C974 /* CalendarView+DataSource.swift in Sources */,
 				8775BBB520305064005DAF59 /* CalendarMonthViewModel.swift in Sources */,
 				87FB425320301A460003C974 /* CalendarView.swift in Sources */,
+				879FB3BD2039F9A900033E0E /* DayViewModel.swift in Sources */,
 				87B95C6E2034C57D004DAC97 /* CalendarDayCellViewModel.swift in Sources */,
 				87B95C43203482DF004DAC97 /* Date+Util.swift in Sources */,
 			);

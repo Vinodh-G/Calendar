@@ -121,6 +121,7 @@ class CalendarView: UIView {
                               width: self.frame.width,
                               height: newHeight)
         self.isMonthViewVisibile = expand
+                
         UIView.animate(withDuration: 0.3, animations: {
             self.frame = newFrame
         },
