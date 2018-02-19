@@ -18,6 +18,9 @@
 		879FB3BB2039F77800033E0E /* CalendarEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879FB3BA2039F77800033E0E /* CalendarEvent.swift */; };
 		879FB3BD2039F9A900033E0E /* DayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879FB3BC2039F9A900033E0E /* DayViewModel.swift */; };
 		879FB3BF2039FA5600033E0E /* EventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879FB3BE2039FA5600033E0E /* EventViewModel.swift */; };
+		879FB3E5203A9BEE00033E0E /* EventsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879FB3E4203A9BEE00033E0E /* EventsLoader.swift */; };
+		879FB3E7203ABF4E00033E0E /* AgendaViewUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879FB3E6203ABF4E00033E0E /* AgendaViewUpdate.swift */; };
+		879FB3F7203B0EC900033E0E /* CalendarViewModel_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879FB3F6203B0EC900033E0E /* CalendarViewModel_Tests.swift */; };
 		87B95C43203482DF004DAC97 /* Date+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B95C42203482DF004DAC97 /* Date+Util.swift */; };
 		87B95C45203485A0004DAC97 /* Date+Util_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B95C44203485A0004DAC97 /* Date+Util_Tests.swift */; };
 		87B95C6E2034C57D004DAC97 /* CalendarDayCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B95C6D2034C57D004DAC97 /* CalendarDayCellViewModel.swift */; };
@@ -61,6 +64,9 @@
 		879FB3BA2039F77800033E0E /* CalendarEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEvent.swift; sourceTree = "<group>"; };
 		879FB3BC2039F9A900033E0E /* DayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayViewModel.swift; sourceTree = "<group>"; };
 		879FB3BE2039FA5600033E0E /* EventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewModel.swift; sourceTree = "<group>"; };
+		879FB3E4203A9BEE00033E0E /* EventsLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsLoader.swift; sourceTree = "<group>"; };
+		879FB3E6203ABF4E00033E0E /* AgendaViewUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaViewUpdate.swift; sourceTree = "<group>"; };
+		879FB3F6203B0EC900033E0E /* CalendarViewModel_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewModel_Tests.swift; sourceTree = "<group>"; };
 		87B95C42203482DF004DAC97 /* Date+Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Util.swift"; sourceTree = "<group>"; };
 		87B95C44203485A0004DAC97 /* Date+Util_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Util_Tests.swift"; sourceTree = "<group>"; };
 		87B95C6D2034C57D004DAC97 /* CalendarDayCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDayCellViewModel.swift; sourceTree = "<group>"; };
@@ -119,9 +125,11 @@
 			isa = PBXGroup;
 			children = (
 				879FB3AF2039EECE00033E0E /* AgendaViewController.swift */,
+				879FB3E6203ABF4E00033E0E /* AgendaViewUpdate.swift */,
 				879FB3B82039F23600033E0E /* AgendaViewModel.swift */,
 				879FB3BC2039F9A900033E0E /* DayViewModel.swift */,
 				879FB3BE2039FA5600033E0E /* EventViewModel.swift */,
+				879FB3E4203A9BEE00033E0E /* EventsLoader.swift */,
 				879FB3B62039F1E700033E0E /* AgendaView.storyboard */,
 			);
 			path = AgendaView;
@@ -133,6 +141,14 @@
 				879FB3B22039EF9800033E0E /* EventKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		879FB3F5203B0EC900033E0E /* CalendarView */ = {
+			isa = PBXGroup;
+			children = (
+				879FB3F6203B0EC900033E0E /* CalendarViewModel_Tests.swift */,
+			);
+			path = CalendarView;
 			sourceTree = "<group>";
 		};
 		87FB4223203013200003C974 = {
@@ -175,6 +191,7 @@
 		87FB4243203013200003C974 /* CalendarTests */ = {
 			isa = PBXGroup;
 			children = (
+				879FB3F5203B0EC900033E0E /* CalendarView */,
 				87FB4244203013200003C974 /* CalendarTests.swift */,
 				87B95C44203485A0004DAC97 /* Date+Util_Tests.swift */,
 				87FB4246203013200003C974 /* Info.plist */,
@@ -326,6 +343,7 @@
 				87FB4259203024070003C974 /* WeekDaysTitleView.swift in Sources */,
 				8775BBBA2030C0F7005DAF59 /* CalendarView+Delegate.swift in Sources */,
 				879FB3BF2039FA5600033E0E /* EventViewModel.swift in Sources */,
+				879FB3E5203A9BEE00033E0E /* EventsLoader.swift in Sources */,
 				87FB425B2030246A0003C974 /* DateFormatter+Util.swift in Sources */,
 				87FB4232203013200003C974 /* ViewController.swift in Sources */,
 				879FB359203821DD00033E0E /* MonthTitleView.swift in Sources */,
@@ -344,6 +362,7 @@
 				879FB3BD2039F9A900033E0E /* DayViewModel.swift in Sources */,
 				87B95C6E2034C57D004DAC97 /* CalendarDayCellViewModel.swift in Sources */,
 				87B95C43203482DF004DAC97 /* Date+Util.swift in Sources */,
+				879FB3E7203ABF4E00033E0E /* AgendaViewUpdate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -351,6 +370,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				879FB3F7203B0EC900033E0E /* CalendarViewModel_Tests.swift in Sources */,
 				87FB4245203013200003C974 /* CalendarTests.swift in Sources */,
 				87B95C45203485A0004DAC97 /* Date+Util_Tests.swift in Sources */,
 			);

@@ -13,12 +13,13 @@ class AgendaViewController: UITableViewController {
     var viewModel: AgendaViewDataSource = AgendaViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let dateRange = DateRange(start: Date(), months: 12, years: 0)
+                
+        let dateRange = DateRange(start: Date().dateByAdding(months: -12), months: 24, years: 0)
         let request = loadEventsRequestParam(dateRange: dateRange)
         viewModel.loadEvents(requestParam: request) { [unowned self] (response) in
-            
-            self.tableView.reloadData()
+            if response.success {
+                self.handleViewUpdates(update: response.updates)
+            }
         }
     }
 
@@ -40,7 +41,7 @@ class AgendaViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath)
         let day = viewModel.days[indexPath.section]
         let event = day.events[indexPath.row]
         
@@ -49,7 +50,39 @@ class AgendaViewController: UITableViewController {
         return cell
     }
     
+    // MARK: - Table view delegate
 
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String?{
+        let day = viewModel.days[section]
+        return day.title
+    }
+    
+    // MARK: - TableView Updates
+    
+    func handleViewUpdates(update:AgendaViewUpdate) {
+        self.tableView.beginUpdates()
+        
+        for update in update.sectionsUpdate {
+            switch update.type {
+            case .insert:
+                self.tableView.insertSections(update.sectionIndex, with: .fade)
+            case .delete:
+                self.tableView.deleteSections(update.sectionIndex, with: .fade)
+            case .update:
+                self.tableView.reloadSections(update.sectionIndex, with: .fade)
+            }
+        }
+        
+        self.tableView.endUpdates()
+    }
+    
+    // MARK: - TableView Updates
+    @IBAction func showTodaysAgenda(_ sender: Any) {
+        if let indexPath = viewModel.indexSetFor(date: Date()){
+            tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+        }
+    }
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

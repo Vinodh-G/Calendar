@@ -25,4 +25,12 @@ extension DateFormatter {
         let monthTitle = self.string(from: date)
         return monthTitle
     }
+    
+    func dateTitleFor(date:Date) -> String {
+        self.dateFormat = kDateFormat
+        self.dateStyle = .medium
+        self.timeStyle = .none
+        let dateTitle = self.string(from: date)
+        return dateTitle
+    }
 }

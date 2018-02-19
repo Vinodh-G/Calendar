@@ -10,8 +10,24 @@ import Foundation
 
 protocol DayViewDatasource {
     var events: [EventViewModel] { get set }
+    var title: String { get }
+    var date: Date { get set }
 }
 
 class DayViewModel: DayViewDatasource {
+    
+    var date: Date
     var events: [EventViewModel] = []
+    
+    init(date:Date) {
+        self.date = date
+    }
+    
+    var title: String {
+        return DateFormatter.shared.dateTitleFor(date: date)
+    }
+    
+    static func ==(lhs: DayViewModel, rhs: DayViewModel) -> Bool {
+        return lhs.date < rhs.date
+    }
 }

@@ -12,6 +12,7 @@ class CalendarEvent  {
     var startDate: Date
     var endDate: Date
     var title: String
+    var isAllDay: Bool = false
     var attendees: [EventAttendee] = []
     init(startDate:Date, endDate:Date, title:String) {
         self.startDate = startDate

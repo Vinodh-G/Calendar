@@ -22,6 +22,7 @@ class CalendarViewModel: CalendarViewDatasource {
     var months: [CalendarMonthViewDataSource] = []
     
     func createMonths(for inStartdate:Date, and inEndDate:Date) {
+        guard inEndDate >= inStartdate else { return }
         startDate = inStartdate
         endDate = inEndDate
         let monthsCount = Date.monthsBetween(startDate: startDate, endDate: endDate)
