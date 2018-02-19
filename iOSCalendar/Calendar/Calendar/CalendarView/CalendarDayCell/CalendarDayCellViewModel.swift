@@ -15,8 +15,8 @@ class CalendarDayCellViewModel {
     }
     
     var dayString : String {
-        let components = Calendar.current.dateComponents([.day], from: date) //else { return "" }
+        let components = Calendar.current.dateComponents([.day], from: date)
         
-        return "\((components.day as! Int))"
+        return "\(components.day as! Int)"
     }
 }

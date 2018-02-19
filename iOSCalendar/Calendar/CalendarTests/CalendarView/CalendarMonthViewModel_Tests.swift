@@ -14,10 +14,9 @@ class CalendarMonthViewModel_Tests: XCTestCase {
     var date : Date!
     override func setUp() {
         super.setUp()
-        let date = Date()
         
         // create date 26th Jan
-        var components =  Calendar.current.dateComponents([.year, .month, .day], from: date)
+        var components =  DateComponents()
         components.month = 1
         components.day = 26
         components.year = 2018
@@ -55,14 +54,12 @@ class CalendarMonthViewModel_Tests: XCTestCase {
     
     func testCalendarMonthViewModelForMonthsRangeFeb18(){
         
-        var date = Date()
-        
         // create date 19th Feb
-        var components =  Calendar.current.dateComponents([.year, .month, .day], from: date)
+        var components =  DateComponents()
         components.month = 2
         components.day = 19
         components.year = 2018
-        date = Calendar.current.date(from: components)!
+        let date = Calendar.current.date(from: components)!
         let calendarMonthModel = CalendarMonthViewModel(inDate: date)
         let monthRange = calendarMonthModel.monthRange
         XCTAssertEqual(monthRange, 4..<32) // The month range should start from 4 to 32 in the available 42 slots, the first of feb came on thursday which is why it starts at 4.
@@ -70,10 +67,8 @@ class CalendarMonthViewModel_Tests: XCTestCase {
     
     func testCalendarMonthViewModelForMonthsRangeDec20(){
         
-        var date = Date()
-        
         // create date 19th Feb
-        var components =  Calendar.current.dateComponents([.year, .month, .day], from: date)
+        var components =  DateComponents()
         components.month = 12
         components.day = 19
         components.year = 2020
@@ -86,8 +81,7 @@ class CalendarMonthViewModel_Tests: XCTestCase {
     
     func testCalendarMonthViewModelForMonthsRangeNov00(){
         
-        var date = Date()
-        var components =  Calendar.current.dateComponents([.year, .month, .day], from: date)
+        var components =  DateComponents()
         components.month = 11
         components.day = 1
         components.year = 0000
@@ -109,9 +103,7 @@ class CalendarMonthViewModel_Tests: XCTestCase {
     
     func testCalendarMonthViewModelForDayStringMonthFeb23()  {
         
-        var date = Date()
-        
-        var components =  Calendar.current.dateComponents([.year, .month, .day], from: date)
+        var components =  DateComponents()
         components.month = 2
         components.day = 1
         components.year = 2023
@@ -131,9 +123,8 @@ class CalendarMonthViewModel_Tests: XCTestCase {
     }
     
     func testCalendarMonthViewModelForMonthTitleJuly() {
-        var date = Date()
-        
-        var components =  Calendar.current.dateComponents([.year, .month, .day], from: date)
+
+        var components =  DateComponents()
         components.month = 7
         components.day = 1
         components.year = 2023
@@ -143,9 +134,8 @@ class CalendarMonthViewModel_Tests: XCTestCase {
     }
     
     func testCalendarMonthViewModelForMonthTitleDec() {
-        var date = Date()
         
-        var components =  Calendar.current.dateComponents([.year, .month, .day], from: date)
+        var components =  DateComponents()
         components.month = 12
         components.day = 1
         components.year = 1998
