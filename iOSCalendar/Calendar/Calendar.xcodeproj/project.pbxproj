@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8732B6BA203C67ED00931DD1 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8732B6B9203C67ED00931DD1 /* CalendarViewController.swift */; };
+		8732B6BC203C681E00931DD1 /* CalendarViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8732B6BB203C681E00931DD1 /* CalendarViewController.storyboard */; };
 		8775BBB520305064005DAF59 /* CalendarMonthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8775BBB420305064005DAF59 /* CalendarMonthViewModel.swift */; };
 		8775BBB720305345005DAF59 /* CalendarMonthLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8775BBB620305345005DAF59 /* CalendarMonthLayout.swift */; };
 		8775BBBA2030C0F7005DAF59 /* CalendarView+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8775BBB92030C0F7005DAF59 /* CalendarView+Delegate.swift */; };
@@ -23,6 +25,7 @@
 		879FB3F7203B0EC900033E0E /* CalendarViewModel_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879FB3F6203B0EC900033E0E /* CalendarViewModel_Tests.swift */; };
 		879FB3F9203B19AF00033E0E /* CalendarMonthViewModel_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879FB3F8203B19AF00033E0E /* CalendarMonthViewModel_Tests.swift */; };
 		879FB3FB203B293900033E0E /* CalendarDayCellViewModel_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879FB3FA203B293900033E0E /* CalendarDayCellViewModel_Tests.swift */; };
+		879FB3FE203B35AF00033E0E /* AgendaViewModel_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879FB3FD203B35AF00033E0E /* AgendaViewModel_Tests.swift */; };
 		87B95C43203482DF004DAC97 /* Date+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B95C42203482DF004DAC97 /* Date+Util.swift */; };
 		87B95C45203485A0004DAC97 /* Date+Util_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B95C44203485A0004DAC97 /* Date+Util_Tests.swift */; };
 		87B95C6E2034C57D004DAC97 /* CalendarDayCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B95C6D2034C57D004DAC97 /* CalendarDayCellViewModel.swift */; };
@@ -55,6 +58,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8732B6B9203C67ED00931DD1 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CalendarViewController.swift; path = Calendar/CalendarViewController.swift; sourceTree = SOURCE_ROOT; };
+		8732B6BB203C681E00931DD1 /* CalendarViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CalendarViewController.storyboard; sourceTree = "<group>"; };
 		8775BBB420305064005DAF59 /* CalendarMonthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarMonthViewModel.swift; sourceTree = "<group>"; };
 		8775BBB620305345005DAF59 /* CalendarMonthLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarMonthLayout.swift; sourceTree = "<group>"; };
 		8775BBB92030C0F7005DAF59 /* CalendarView+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CalendarView+Delegate.swift"; sourceTree = "<group>"; };
@@ -71,6 +76,7 @@
 		879FB3F6203B0EC900033E0E /* CalendarViewModel_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewModel_Tests.swift; sourceTree = "<group>"; };
 		879FB3F8203B19AF00033E0E /* CalendarMonthViewModel_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarMonthViewModel_Tests.swift; sourceTree = "<group>"; };
 		879FB3FA203B293900033E0E /* CalendarDayCellViewModel_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDayCellViewModel_Tests.swift; sourceTree = "<group>"; };
+		879FB3FD203B35AF00033E0E /* AgendaViewModel_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaViewModel_Tests.swift; sourceTree = "<group>"; };
 		87B95C42203482DF004DAC97 /* Date+Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Util.swift"; sourceTree = "<group>"; };
 		87B95C44203485A0004DAC97 /* Date+Util_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Util_Tests.swift"; sourceTree = "<group>"; };
 		87B95C6D2034C57D004DAC97 /* CalendarDayCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDayCellViewModel.swift; sourceTree = "<group>"; };
@@ -157,6 +163,14 @@
 			path = CalendarView;
 			sourceTree = "<group>";
 		};
+		879FB3FC203B358900033E0E /* AgendaView */ = {
+			isa = PBXGroup;
+			children = (
+				879FB3FD203B35AF00033E0E /* AgendaViewModel_Tests.swift */,
+			);
+			path = AgendaView;
+			sourceTree = "<group>";
+		};
 		87FB4223203013200003C974 = {
 			isa = PBXGroup;
 			children = (
@@ -179,6 +193,8 @@
 		87FB422E203013200003C974 /* Calendar */ = {
 			isa = PBXGroup;
 			children = (
+				8732B6B9203C67ED00931DD1 /* CalendarViewController.swift */,
+				8732B6BB203C681E00931DD1 /* CalendarViewController.storyboard */,
 				879FB3AE2039EECE00033E0E /* AgendaView */,
 				87FB425120301A460003C974 /* CalendarView */,
 				87FB422F203013200003C974 /* AppDelegate.swift */,
@@ -197,6 +213,7 @@
 		87FB4243203013200003C974 /* CalendarTests */ = {
 			isa = PBXGroup;
 			children = (
+				879FB3FC203B358900033E0E /* AgendaView */,
 				879FB3F5203B0EC900033E0E /* CalendarView */,
 				87FB4244203013200003C974 /* CalendarTests.swift */,
 				87B95C44203485A0004DAC97 /* Date+Util_Tests.swift */,
@@ -324,6 +341,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				87FB4269203039870003C974 /* CalendarDayCell.xib in Resources */,
+				8732B6BC203C681E00931DD1 /* CalendarViewController.storyboard in Resources */,
 				87FB423A203013200003C974 /* LaunchScreen.storyboard in Resources */,
 				879FB3B72039F1E700033E0E /* AgendaView.storyboard in Resources */,
 				87FB4237203013200003C974 /* Assets.xcassets in Resources */,
@@ -350,6 +368,7 @@
 				8775BBBA2030C0F7005DAF59 /* CalendarView+Delegate.swift in Sources */,
 				879FB3BF2039FA5600033E0E /* EventViewModel.swift in Sources */,
 				879FB3E5203A9BEE00033E0E /* EventsLoader.swift in Sources */,
+				8732B6BA203C67ED00931DD1 /* CalendarViewController.swift in Sources */,
 				87FB425B2030246A0003C974 /* DateFormatter+Util.swift in Sources */,
 				87FB4232203013200003C974 /* ViewController.swift in Sources */,
 				879FB359203821DD00033E0E /* MonthTitleView.swift in Sources */,
@@ -380,6 +399,7 @@
 				87FB4245203013200003C974 /* CalendarTests.swift in Sources */,
 				87B95C45203485A0004DAC97 /* Date+Util_Tests.swift in Sources */,
 				879FB3FB203B293900033E0E /* CalendarDayCellViewModel_Tests.swift in Sources */,
+				879FB3FE203B35AF00033E0E /* AgendaViewModel_Tests.swift in Sources */,
 				879FB3F9203B19AF00033E0E /* CalendarMonthViewModel_Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

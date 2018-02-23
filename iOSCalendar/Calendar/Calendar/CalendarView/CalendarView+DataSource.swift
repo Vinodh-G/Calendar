@@ -23,7 +23,14 @@ extension CalendarView : UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: kDayCellId, for: indexPath) as! CalendarDayCell
         let monthViewModel = viewModel.months[indexPath.section]
-        cell.dayTitleLabel.text = monthViewModel.dayStringFor(slot: indexPath.item)
+        if monthViewModel.canDisplayDayFor(slot: indexPath.item) {
+            let dayViewModel = monthViewModel.days[indexPath.item]
+            cell.dayTitleLabel.text = dayViewModel.dayString
+            
+            if viewModel.selectedDay != nil, dayViewModel == viewModel.selectedDay {
+                cell.set(selected: true)
+            }
+        }
         return cell
     }
 }

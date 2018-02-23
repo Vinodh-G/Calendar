@@ -10,7 +10,7 @@ import Foundation
 
 public let kFullDateFormat = "yyyy-MM-dd HH:mm:ss"
 public let kDateFormat = "yyyy-MM-dd"
-public let kFullMonthNameFormat = "MMMM"
+public let kFullMonthNameFormat = "MMMM-yy"
 extension DateFormatter {
 
     static let shared : DateFormatter = {

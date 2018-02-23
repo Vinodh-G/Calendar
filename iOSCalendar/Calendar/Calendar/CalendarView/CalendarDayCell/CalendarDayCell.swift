@@ -11,8 +11,15 @@ import UIKit
 class CalendarDayCell: UICollectionViewCell {
     
     @IBOutlet weak var dayTitleLabel: UILabel!
+    @IBOutlet weak var highlightView: UIView!
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        dayTitleLabel.text = nil
+        highlightView.isHidden = true
+    }
+    
+    func set(selected:Bool) {
+        highlightView.isHidden = !selected
     }
 }

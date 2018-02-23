@@ -8,22 +8,14 @@
 
 import Foundation
 
-protocol CalendarMonthViewDataSource {
-    var  dates: [CalendarDayCellViewModel] { get set }
-    func numOfDaySlot() -> Int
-    func dayStringFor(slot: Int) -> String
-    var  monthTitle: String { get }
-}
-
-class CalendarMonthViewModel: CalendarMonthViewDataSource {
+class CalendarMonthViewModel {
     
-    var date : Date
-    var dates: [CalendarDayCellViewModel] = []
+    var startDate : Date
+    var days: [CalendarDayCellViewModel] = []
     var monthRange : Range<Int> = 0..<1
-    
     init(inDate:Date) {
-        date = inDate
-        generateDatesForMonthFrom(date: date)
+        startDate = Date.startDateOfMonthFor(date: inDate)
+        generateDatesForMonthFrom(date: startDate)
     }
     
     func generateDatesForMonthFrom(date:Date) {
@@ -34,7 +26,7 @@ class CalendarMonthViewModel: CalendarMonthViewDataSource {
         var slotDateDay =  0 - startDayIndex + 1
         for _ in stride(from: 0, to: 42, by: 1) {
             let date = startDate.dateByAdding(days: slotDateDay)
-            dates.append(CalendarDayCellViewModel(inDate: date))
+            days.append(CalendarDayCellViewModel(inDate: date))
             slotDateDay = slotDateDay + 1
         }
         let endDate = Date.endDateOfMonthFor(date: date)
@@ -42,21 +34,24 @@ class CalendarMonthViewModel: CalendarMonthViewDataSource {
         monthRange = (startDayIndex - 1)..<(endDayIndex + startDayIndex - 1)
     }
     
+    func dayFor(date:Date) -> CalendarDayCellViewModel? {
+        let startDate = date.startDateFor(date: date)
+        return days.first(where: { $0.date == startDate })
+    }
+    
     func numOfDaySlot()-> Int{
         return 42
     }
     
-    func dayStringFor(slot:Int) -> String {
-        var dayString = ""
-        if monthRange.contains(slot) {
-            dayString = dayString.appending("\(slot + 1 - monthRange.lowerBound)")
-            return  dayString
-        } else{
-            return dayString
-        }
+    func canDisplayDayFor(slot: Int) -> Bool {
+        return monthRange.contains(slot)
+    }
+    
+    func canSelectDayFor(slot: Int) -> Bool {
+        return monthRange.contains(slot)
     }
     
     var monthTitle: String {
-        return DateFormatter.shared.monthTitleFor(date: date)
+        return DateFormatter.shared.monthTitleFor(date: startDate)
     }
 }

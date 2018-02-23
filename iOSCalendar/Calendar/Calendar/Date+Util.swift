@@ -9,6 +9,16 @@
 import Foundation
 
 extension Date {
+    
+    public func startDateFor(date:Date) -> Date {
+        var components = Calendar.current.dateComponents([.year, .month, .day], from: date)
+        components.hour = 0
+        components.minute = 0
+        components.second = 0
+        guard let startDate = Calendar.current.date(from: components) else { return date }
+        return startDate
+    }
+    
     public static func startDateOfMonthFor(date:Date) -> Date {
         var components = Calendar.current.dateComponents([.year, .month, .day], from: date)
         components.day = 1

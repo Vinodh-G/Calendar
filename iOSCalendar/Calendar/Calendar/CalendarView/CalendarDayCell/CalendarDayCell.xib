@@ -19,25 +19,43 @@
                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="T" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GjD-Dj-Oqa">
+                    <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gFD-GK-JyK">
                         <rect key="frame" x="8" y="8" width="34" height="34"/>
-                        <color key="backgroundColor" red="1" green="0.70284577820000005" blue="0.13639290539999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.10063557569999999" green="0.68856598349999998" blue="0.87685546869999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="17"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GjD-Dj-Oqa">
+                        <rect key="frame" x="8" y="8" width="34" height="34"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="34" id="WjY-TF-HfD"/>
+                            <constraint firstAttribute="height" constant="34" id="hPW-m4-00R"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
             </view>
-            <color key="backgroundColor" red="0.3352339419" green="0.61432686240000001" blue="0.019083578680000001" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="GjD-Dj-Oqa" secondAttribute="bottom" constant="8" id="CwU-At-SBP"/>
-                <constraint firstItem="GjD-Dj-Oqa" firstAttribute="leading" secondItem="gOI-5f-Sh6" secondAttribute="leading" constant="8" id="GsP-4D-YXE"/>
-                <constraint firstItem="GjD-Dj-Oqa" firstAttribute="top" secondItem="gOI-5f-Sh6" secondAttribute="top" constant="8" id="HvS-mq-Vmb"/>
-                <constraint firstAttribute="trailing" secondItem="GjD-Dj-Oqa" secondAttribute="trailing" constant="8" id="qKX-TY-Dzm"/>
+                <constraint firstItem="gFD-GK-JyK" firstAttribute="centerX" secondItem="GjD-Dj-Oqa" secondAttribute="centerX" id="Fhl-dg-Eds"/>
+                <constraint firstItem="gFD-GK-JyK" firstAttribute="leading" secondItem="GjD-Dj-Oqa" secondAttribute="leading" id="O9n-bb-Zgf"/>
+                <constraint firstItem="gFD-GK-JyK" firstAttribute="centerY" secondItem="GjD-Dj-Oqa" secondAttribute="centerY" id="ZFU-N0-ojN"/>
+                <constraint firstItem="gFD-GK-JyK" firstAttribute="trailing" secondItem="GjD-Dj-Oqa" secondAttribute="trailing" id="gbd-wx-g6T"/>
+                <constraint firstItem="GjD-Dj-Oqa" firstAttribute="centerY" secondItem="2Sw-xX-wH8" secondAttribute="centerY" id="jxW-6Z-gOp"/>
+                <constraint firstItem="gFD-GK-JyK" firstAttribute="bottom" secondItem="GjD-Dj-Oqa" secondAttribute="bottom" id="kKY-21-h4Z"/>
+                <constraint firstItem="gFD-GK-JyK" firstAttribute="top" secondItem="GjD-Dj-Oqa" secondAttribute="top" id="qiE-J5-LGg"/>
+                <constraint firstItem="GjD-Dj-Oqa" firstAttribute="centerX" secondItem="2Sw-xX-wH8" secondAttribute="centerX" id="w99-Xi-xF3"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="2Sw-xX-wH8"/>
             <connections>
                 <outlet property="dayTitleLabel" destination="GjD-Dj-Oqa" id="Moe-dh-Ldu"/>
+                <outlet property="highlightView" destination="gFD-GK-JyK" id="Dlu-Da-NPo"/>
             </connections>
             <point key="canvasLocation" x="-24" y="26"/>
         </collectionViewCell>
