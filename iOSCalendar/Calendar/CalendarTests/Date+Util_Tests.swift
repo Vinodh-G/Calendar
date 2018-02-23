@@ -23,7 +23,7 @@ class Date_Util_Tests: XCTestCase {
     
     func testStartDateDay() {
         let date = Date()
-        let startDate = Date.startDateOfMonthFor(date:date)
+        let startDate = date.startDateOfMonth()
         let components =  Calendar.current.dateComponents([.year, .month, .day], from: startDate)
         XCTAssertEqual(components.day, 1)
     }
@@ -37,7 +37,7 @@ class Date_Util_Tests: XCTestCase {
         date = Calendar.current.date(from: components)!
         
         // should return start date as 1 itself
-        let startDate = Date.startDateOfMonthFor(date:date)
+        let startDate = date.startDateOfMonth()
         components =  Calendar.current.dateComponents([.year, .month, .day], from: startDate)
         XCTAssertEqual(components.day, 1)
     }
@@ -52,7 +52,7 @@ class Date_Util_Tests: XCTestCase {
         date = Calendar.current.date(from: components)!
         
         // should return end date of 31st Jan
-        let endDate = Date.endDateOfMonthFor(date:date)
+        let endDate = date.endDateOfMonth()
         components =  Calendar.current.dateComponents([.year, .month, .day], from: endDate)
         XCTAssertEqual(components.day, 31)
     }
@@ -67,7 +67,7 @@ class Date_Util_Tests: XCTestCase {
         date = Calendar.current.date(from: components)!
         
         // should return end date of 31st Jan
-        let endDate = Date.endDateOfMonthFor(date:date)
+        let endDate = date.endDateOfMonth()
         components =  Calendar.current.dateComponents([.year, .month, .day], from: endDate)
         XCTAssertEqual(components.day, 28)
     }
@@ -83,7 +83,7 @@ class Date_Util_Tests: XCTestCase {
         date = Calendar.current.date(from: components)!
         
         // should return end date of 31st Jan
-        let endDate = Date.endDateOfMonthFor(date:date)
+        let endDate = date.endDateOfMonth()
         components =  Calendar.current.dateComponents([.year, .month, .day], from: endDate)
         XCTAssertEqual(components.day, 29)
     }
@@ -97,7 +97,7 @@ class Date_Util_Tests: XCTestCase {
         date = Calendar.current.date(from: components)!
         
         // should return end date of 31st Jan
-        let weekDay = Date.weekDayFor(date:date)
+        let weekDay = date.weekDay()
         XCTAssertEqual(weekDay, 4)
     }
     

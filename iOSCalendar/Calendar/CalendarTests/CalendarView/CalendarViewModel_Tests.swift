@@ -97,7 +97,7 @@ class CalendarViewModel_Tests: XCTestCase {
     
     func testSetSelectedDateverifySelectedDayDate() {
         let calendarViewModel: CalendarViewModel = CalendarViewModel()
-        let date = Date().startDateFor(date: Date())
+        let date = Date().startDay()
         let startDate = date.dateByAdding(months: -1)
         let endDate = date.dateByAdding(months: 2)
         calendarViewModel.createMonths(for: startDate, and: endDate)

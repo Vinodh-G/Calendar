@@ -10,38 +10,38 @@ import Foundation
 
 extension Date {
     
-    public func startDateFor(date:Date) -> Date {
-        var components = Calendar.current.dateComponents([.year, .month, .day], from: date)
+    public func startDay() -> Date {
+        var components = Calendar.current.dateComponents([.year, .month, .day], from: self)
         components.hour = 0
         components.minute = 0
         components.second = 0
-        guard let startDate = Calendar.current.date(from: components) else { return date }
+        guard let startDate = Calendar.current.date(from: components) else { return self }
         return startDate
     }
     
-    public static func startDateOfMonthFor(date:Date) -> Date {
-        var components = Calendar.current.dateComponents([.year, .month, .day], from: date)
+    public func startDateOfMonth() -> Date {
+        var components = Calendar.current.dateComponents([.year, .month, .day], from: self)
         components.day = 1
-        guard let startDate = Calendar.current.date(from: components) else { return date }
+        guard let startDate = Calendar.current.date(from: components) else { return self }
         return startDate
     }
     
-    public static func endDateOfMonthFor(date:Date) -> Date {
-        var components = Calendar.current.dateComponents([.year, .month, .day], from: date)
-        guard let range = Calendar.current.range(of: .day, in: .month, for: date) else { return date }
+    public func endDateOfMonth() -> Date {
+        var components = Calendar.current.dateComponents([.year, .month, .day], from: self)
+        guard let range = Calendar.current.range(of: .day, in: .month, for: self) else { return self }
         components.day = range.count
-        guard let endDate = Calendar.current.date(from: components) else { return date }
+        guard let endDate = Calendar.current.date(from: components) else { return self }
         return endDate
     }
     
-    public static func weekDayFor(date:Date) -> Int {
-        var components = Calendar.current.dateComponents([.weekday], from: date)
+    public func weekDay() -> Int {
+        var components = Calendar.current.dateComponents([.weekday], from: self)
         guard let weekDay = components.weekday else { return -1 }
         return weekDay
     }
     
-    public static func endDayOfMonthFor(date:Date) -> Int {
-        guard let range = Calendar.current.range(of: .day, in: .month, for: date) else { return -1 }
+    public func endDayOfMonth() -> Int {
+        guard let range = Calendar.current.range(of: .day, in: .month, for: self) else { return -1 }
         return range.count
     }
     

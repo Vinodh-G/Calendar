@@ -14,28 +14,28 @@ class CalendarMonthViewModel {
     var days: [CalendarDayCellViewModel] = []
     var monthRange : Range<Int> = 0..<1
     init(inDate:Date) {
-        startDate = Date.startDateOfMonthFor(date: inDate)
+        startDate = inDate.startDateOfMonth()
         generateDatesForMonthFrom(date: startDate)
     }
     
     func generateDatesForMonthFrom(date:Date) {
         // TODO: Generate the 42 CalendarDayCellViewModel  for the available month slots
         // record the date range for the month so that only month date is displayed.
-        let startDate = Date.startDateOfMonthFor(date: date)
-        let startDayIndex = Date.weekDayFor(date: startDate)
+        let startDate = date.startDateOfMonth()
+        let startDayIndex = startDate.weekDay()
         var slotDateDay =  0 - startDayIndex + 1
         for _ in stride(from: 0, to: 42, by: 1) {
             let date = startDate.dateByAdding(days: slotDateDay)
             days.append(CalendarDayCellViewModel(inDate: date))
             slotDateDay = slotDateDay + 1
         }
-        let endDate = Date.endDateOfMonthFor(date: date)
-        let endDayIndex =  Date.endDayOfMonthFor(date: endDate)
+        let endDate = date.endDateOfMonth()
+        let endDayIndex = endDate.endDayOfMonth()
         monthRange = (startDayIndex - 1)..<(endDayIndex + startDayIndex - 1)
     }
     
     func dayFor(date:Date) -> CalendarDayCellViewModel? {
-        let startDate = date.startDateFor(date: date)
+        let startDate = date.startDay()
         return days.first(where: { $0.date == startDate })
     }
     

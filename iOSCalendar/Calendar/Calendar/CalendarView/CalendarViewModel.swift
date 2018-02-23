@@ -32,7 +32,7 @@ class CalendarViewModel {
     
     public func monthFor(date:Date) -> CalendarMonthViewModel? {
         guard date > startDate || date < endDate else { return nil }
-        let startMonthDate = Date.startDateOfMonthFor(date: date)
+        let startMonthDate = date.startDateOfMonth()
         
         return months.first(where: { $0.startDate == startMonthDate })
     }
