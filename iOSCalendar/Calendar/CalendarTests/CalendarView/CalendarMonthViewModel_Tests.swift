@@ -32,7 +32,7 @@ class CalendarMonthViewModel_Tests: XCTestCase {
         
         let calendarMonthModel = CalendarMonthViewModel(inDate: self.date)
         // The Month layout can have maximum 42 day slots in which months date ranges between the these 0..42 slots
-        XCTAssertEqual(calendarMonthModel.dates.count, 42)
+        XCTAssertEqual(calendarMonthModel.days.count, 42)
     }
     
     // Every month date should fall in between these below 42 slots, based the start day of month the month rages value is calculated.
@@ -96,7 +96,7 @@ class CalendarMonthViewModel_Tests: XCTestCase {
         let calendarMonthModel = CalendarMonthViewModel(inDate: date)
         var monthIndex = 1
         for slot in 1 ..< 32 {
-            XCTAssertEqual(calendarMonthModel.dayStringFor(slot: slot), "\(monthIndex)")
+            XCTAssertEqual(calendarMonthModel.days[slot].dayString, "\(monthIndex)")
             monthIndex = monthIndex + 1
         }
     }
@@ -112,7 +112,7 @@ class CalendarMonthViewModel_Tests: XCTestCase {
         let calendarMonthModel = CalendarMonthViewModel(inDate: date)
         var monthIndex = 1
         for slot in 3 ..< 31 {
-            XCTAssertEqual(calendarMonthModel.dayStringFor(slot: slot), "\(monthIndex)")
+            XCTAssertEqual(calendarMonthModel.days[slot].dayString, "\(monthIndex)")
             monthIndex = monthIndex + 1
         }
     }

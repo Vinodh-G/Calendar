@@ -18,7 +18,7 @@ class CalendarViewModel {
     var updateBlock: CalendarViewUpdateBlock?
     var months: [CalendarMonthViewModel] = []
     
-    func createMonths(for inStartdate:Date, and inEndDate:Date) {
+    public func createMonths(for inStartdate:Date, and inEndDate:Date) {
         guard inEndDate >= inStartdate else { return }
         startDate = inStartdate
         endDate = inEndDate
@@ -30,7 +30,7 @@ class CalendarViewModel {
         }
     }
     
-    func monthFor(date:Date) -> CalendarMonthViewModel? {
+    public func monthFor(date:Date) -> CalendarMonthViewModel? {
         guard date > startDate || date < endDate else { return nil }
         let startMonthDate = Date.startDateOfMonthFor(date: date)
         
@@ -55,7 +55,7 @@ class CalendarViewModel {
         }
     }
     
-    func indexPathFor(day:CalendarDayCellViewModel) -> IndexPath?{
+    private func indexPathFor(day:CalendarDayCellViewModel) -> IndexPath?{
         guard let month = monthFor(date: day.date) else { return nil }
         guard let monthIndex = months.index(where: {$0.startDate == month.startDate}) else { return nil }
         guard let dayIndex = month.days.index(where: {$0.date == day.date}) else { return nil }
