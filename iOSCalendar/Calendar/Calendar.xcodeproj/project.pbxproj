@@ -10,6 +10,7 @@
 		873F6F57204172F400F3F950 /* CalendarView+LayoutSetUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873F6F56204172F400F3F950 /* CalendarView+LayoutSetUp.swift */; };
 		873F6F5B2041AB5000F3F950 /* AgendaViewController+ScrollDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873F6F5A2041AB5000F3F950 /* AgendaViewController+ScrollDelegate.swift */; };
 		873F6F5D2041BACE00F3F950 /* CalendarView+HeaderViewConfigure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873F6F5C2041BACE00F3F950 /* CalendarView+HeaderViewConfigure.swift */; };
+		873F6F5F2041F5A700F3F950 /* DayViewModel_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873F6F5E2041F5A600F3F950 /* DayViewModel_Tests.swift */; };
 		8775BBB520305064005DAF59 /* CalendarMonthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8775BBB420305064005DAF59 /* CalendarMonthViewModel.swift */; };
 		8775BBB720305345005DAF59 /* CalendarMonthLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8775BBB620305345005DAF59 /* CalendarMonthLayout.swift */; };
 		8775BBBA2030C0F7005DAF59 /* CalendarView+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8775BBB92030C0F7005DAF59 /* CalendarView+Delegate.swift */; };
@@ -59,6 +60,7 @@
 		873F6F56204172F400F3F950 /* CalendarView+LayoutSetUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CalendarView+LayoutSetUp.swift"; sourceTree = "<group>"; };
 		873F6F5A2041AB5000F3F950 /* AgendaViewController+ScrollDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AgendaViewController+ScrollDelegate.swift"; sourceTree = "<group>"; };
 		873F6F5C2041BACE00F3F950 /* CalendarView+HeaderViewConfigure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CalendarView+HeaderViewConfigure.swift"; sourceTree = "<group>"; };
+		873F6F5E2041F5A600F3F950 /* DayViewModel_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayViewModel_Tests.swift; sourceTree = "<group>"; };
 		8775BBB420305064005DAF59 /* CalendarMonthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarMonthViewModel.swift; sourceTree = "<group>"; };
 		8775BBB620305345005DAF59 /* CalendarMonthLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarMonthLayout.swift; sourceTree = "<group>"; };
 		8775BBB92030C0F7005DAF59 /* CalendarView+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CalendarView+Delegate.swift"; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				879FB3FD203B35AF00033E0E /* AgendaViewModel_Tests.swift */,
+				873F6F5E2041F5A600F3F950 /* DayViewModel_Tests.swift */,
 			);
 			path = AgendaView;
 			sourceTree = "<group>";
@@ -403,6 +406,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				873F6F5F2041F5A700F3F950 /* DayViewModel_Tests.swift in Sources */,
 				879FB3F7203B0EC900033E0E /* CalendarViewModel_Tests.swift in Sources */,
 				87FB4245203013200003C974 /* CalendarTests.swift in Sources */,
 				87B95C45203485A0004DAC97 /* Date+Util_Tests.swift in Sources */,
