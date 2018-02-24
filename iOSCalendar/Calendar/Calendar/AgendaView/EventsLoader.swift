@@ -45,7 +45,6 @@ class EventsLoader {
             calendarEvent.isAllDay = event.isAllDay
             return calendarEvent
         }
-        print(events)
         onComplete(events)
     }
 }

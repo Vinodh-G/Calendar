@@ -39,6 +39,13 @@ class CalendarHeaderView: UIView, CalendarHeaderViewAction {
         
         let view = MonthTitleView(frame: monthTitleFrame)
         self.addSubview(view)
+        
+        view.translatesAutoresizingMaskIntoConstraints = false
+        let margins = safeAreaLayoutGuide
+        view.topAnchor.constraint(equalTo: margins.topAnchor).isActive = true
+        view.bottomAnchor.constraint(equalTo: margins.bottomAnchor).isActive = true
+        view.leadingAnchor.constraint(equalTo: margins.leadingAnchor).isActive = true
+        view.trailingAnchor.constraint(equalTo: margins.trailingAnchor).isActive = true
         return view
     }()
     

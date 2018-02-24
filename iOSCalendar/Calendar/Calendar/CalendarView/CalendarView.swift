@@ -9,6 +9,10 @@
 import UIKit
 
 let kDayCellId = "DayCellId"
+let kHeaderHeightiPhone: CGFloat = 44.0
+let kHeaderHeightiPad: CGFloat = 64.0
+let kWeekTitleHeightiPhone: CGFloat = 20.0
+let kWeekTitleHeightiPad: CGFloat = 24.0
 
 protocol CalendarViewDatasource {
     func startDate() -> Date
@@ -62,37 +66,12 @@ class CalendarView: UIView {
     
     func setUp() {
         clipsToBounds = true
-        headerView = CalendarHeaderView()
-        headerView.backgroundColor = UIColor.gray
-        weak var weakSelf = self
-        headerView.didTapOnHeaderBlock = {(sender) in
-            if let strongSelf = weakSelf {
-                strongSelf.expandMonthView(expand: !strongSelf.isMonthViewVisibile)
-            }
-        }
-        addSubview(headerView)
-        
-        weekTitleView = WeekDaysTitleView()
-        weekTitleView.backgroundColor = UIColor.gray
-        addSubview(weekTitleView)
-        
-        let layout = CalendarMonthLayout()
-        layout.scrollDirection = .horizontal
-        layout.sectionInset = UIEdgeInsets.zero
-        layout.minimumInteritemSpacing = 0
-        layout.minimumLineSpacing = 0
-        
-        collectionView = UICollectionView(frame: bounds, collectionViewLayout: layout)
-        collectionView.isPagingEnabled = true
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        collectionView.backgroundColor = UIColor.clear
-        collectionView.register(UINib(nibName: "CalendarDayCell", bundle: nil), forCellWithReuseIdentifier: kDayCellId)
-        addSubview(collectionView)
-
-        autoresizesSubviews = true
-        translatesAutoresizingMaskIntoConstraints = true
+        setUpHeaderView()
+        setUpWeekTitileView()
+        setUpCollectionView()
+        backgroundColor = .black
     }
+
     
     func configureViewModel() {
         if let dataSource = self.datasource {
@@ -109,21 +88,7 @@ class CalendarView: UIView {
     override open func layoutSubviews() {
         
         super.layoutSubviews()
-        headerView.frame = CGRect(x:0.0,
-                                  y:0.0,
-                                  width: bounds.size.width,
-                                  height: 44)
-        
-        weekTitleView.frame = CGRect(x:0.0,
-                                     y:headerView.bounds.size.height,
-                                     width: bounds.size.width,
-                                     height: 24)
-        
-        collectionView.frame = CGRect(x: 0.0,
-                                      y: headerView.bounds.size.height + weekTitleView.bounds.size.height,
-                                      width: bounds.size.width,
-                                      height: bounds.size.height - (headerView.bounds.size.height + weekTitleView.bounds.size.height))
-        
+        layoutIfNeeded()
         calendarLayout.itemSize = cellSize(in: self.bounds)
         collectionView.invalidateIntrinsicContentSize()
         if let month = visibleMonthForCurrentOffset() {
@@ -159,7 +124,7 @@ class CalendarView: UIView {
     
     func expandMonthView(expand:Bool) {
         
-        let newHeight = expand ? 343 : headerView.bounds.size.height
+        let newHeight = expand ? 343 : CalendarView.headerHieght
         let newFrame = CGRect(x: self.frame.origin.x,
                               y: self.frame.origin.y,
                               width: self.frame.width,
@@ -174,4 +139,17 @@ class CalendarView: UIView {
 }
 
 extension CalendarView {
+    static var headerHieght : CGFloat {
+        switch UIDevice.current.userInterfaceIdiom {
+        case .phone : return kHeaderHeightiPhone
+        default : return kHeaderHeightiPad
+        }
+    }
+    
+    static var weekTitleHieght : CGFloat {
+        switch UIDevice.current.userInterfaceIdiom {
+        case .phone : return kWeekTitleHeightiPhone
+        default : return kWeekTitleHeightiPad
+        }
+    }
 }

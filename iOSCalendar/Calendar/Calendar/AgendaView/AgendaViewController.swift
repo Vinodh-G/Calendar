@@ -8,12 +8,24 @@
 
 import UIKit
 
-class AgendaViewController: UITableViewController {
+internal let kCalendarMonthViewHeightFactor: CGFloat = 0.48
 
+class AgendaViewController: UIViewController,
+UITableViewDelegate,
+UITableViewDataSource,
+CalendarViewDatasource,
+CalendarViewDelegate {
+
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var calendarContainerView: UIView!
+    @IBOutlet weak var calendarContainerViewHeightConstraint: NSLayoutConstraint!
+
+    var calendarMonthView: CalendarView?
     var viewModel: AgendaViewDataSource = AgendaViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
-                
+        configureInitialLayout()
+        
         let dateRange = DateRange(start: Date().dateByAdding(months: -12), months: 24, years: 0)
         let request = loadEventsRequestParam(dateRange: dateRange)
         viewModel.loadEvents(requestParam: request) { [unowned self] (response) in
@@ -21,6 +33,31 @@ class AgendaViewController: UITableViewController {
                 self.handleViewUpdates(update: response.updates)
             }
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        guard let calendarView = calendarMonthView else { return }
+        calendarView.set(selectedDate: Date(), animated: false)
+    }
+    
+    func configureInitialLayout() {
+        self.navigationController?.isNavigationBarHidden = true
+        calendarContainerViewHeightConstraint.constant = view.bounds.size.height * kCalendarMonthViewHeightFactor
+        // Set the Calendar View datasource and delegate as self
+        
+        guard calendarMonthView == nil else { return }
+        let calendarView = CalendarView(frame: calendarContainerView.bounds)
+        calendarContainerView.addSubview(calendarView)
+        calendarView.datasource = self
+        calendarView.delegate = self
+        calendarView.translatesAutoresizingMaskIntoConstraints = false
+        let layoutMargins = calendarContainerView.safeAreaLayoutGuide
+        calendarView.leadingAnchor.constraint(equalTo: layoutMargins.leadingAnchor).isActive = true
+        calendarView.trailingAnchor.constraint(equalTo: layoutMargins.trailingAnchor).isActive = true
+        calendarView.topAnchor.constraint(equalTo: layoutMargins.topAnchor).isActive = true
+        calendarView.bottomAnchor.constraint(equalTo: layoutMargins.bottomAnchor).isActive = true
+        calendarMonthView = calendarView
     }
 
     override func didReceiveMemoryWarning() {
@@ -30,17 +67,17 @@ class AgendaViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return viewModel.days.count
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let day = viewModel.days[section]
         return day.events.count
     }
 
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath)
         let day = viewModel.days[indexPath.section]
         let event = day.events[indexPath.row]
@@ -52,7 +89,7 @@ class AgendaViewController: UITableViewController {
     
     // MARK: - Table view delegate
 
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String?{
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String?{
         let day = viewModel.days[section]
         return day.title
     }
@@ -61,7 +98,7 @@ class AgendaViewController: UITableViewController {
     
     func handleViewUpdates(update:AgendaViewUpdate) {
         self.tableView.beginUpdates()
-        
+
         for update in update.sectionsUpdate {
             switch update.type {
             case .insert:
@@ -72,7 +109,7 @@ class AgendaViewController: UITableViewController {
                 self.tableView.reloadSections(update.sectionIndex, with: .fade)
             }
         }
-        
+
         self.tableView.endUpdates()
     }
     
@@ -82,6 +119,22 @@ class AgendaViewController: UITableViewController {
             tableView.scrollToRow(at: indexPath, at: .top, animated: true)
         }
     }
+    
+    // MARK: CalendarViewDatasource
+    func startDate() -> Date {
+        //TODO: should be given from some other place, right now hard coding for testing
+        return Date().dateByAdding(months: -12)
+    }
+    
+    func endDate() -> Date {
+        return Date().dateByAdding(months: 13)
+    }
+    
+    // MARK: CalendarViewDelegate
+    func didSelectedDate(date: Date) {
+        print("Selected Date : \(date)")
+    }
+    
     
     /*
     // Override to support conditional editing of the table view.
