@@ -15,7 +15,9 @@ extension CalendarView {
         headerView = CalendarHeaderView(frame: CGRect(x: 0, y: 0, width: bounds.size.width, height: CalendarView.headerHieght))
         headerView.backgroundColor = UIColor.gray
         headerView.didTapOnHeaderBlock = { [unowned self] (sender) in
-            self.expandMonthView(expand: self.isMonthViewVisibile)
+            if let calViewdelegate = self.delegate {
+                calViewdelegate.didTapOnHeader()
+            }
         }
         addSubview(headerView)
         headerView.translatesAutoresizingMaskIntoConstraints = false

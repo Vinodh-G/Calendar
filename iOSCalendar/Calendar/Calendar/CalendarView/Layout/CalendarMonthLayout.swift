@@ -23,15 +23,17 @@ class CalendarMonthLayout: UICollectionViewFlowLayout {
     }
     
     open override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
-        return super.layoutAttributesForElements(in: rect)?.map { attributes in
+        return super.layoutAttributesForElements(in: rect)?.map { attribute in
             
-            var elementAttributes = layoutInfoCache[attributes.indexPath]
-            if elementAttributes == nil {
-                elementAttributes = UICollectionViewLayoutAttributes(forCellWith: attributes.indexPath)
-                layoutInfoCache[elementAttributes!.indexPath] = elementAttributes
+            guard let elementAttributes = layoutInfoCache[attribute.indexPath] else {
+                let newAttributes = UICollectionViewLayoutAttributes(forCellWith: attribute.indexPath)
+                layoutInfoCache[newAttributes.indexPath] = newAttributes
+                self.applyMonthLayoutAttributes(attributes: newAttributes)
+                return newAttributes
             }
-            self.applyMonthLayoutAttributes(attributes: elementAttributes!)
-            return elementAttributes!
+            
+            self.applyMonthLayoutAttributes(attributes: elementAttributes)
+            return elementAttributes
         }
     }
     

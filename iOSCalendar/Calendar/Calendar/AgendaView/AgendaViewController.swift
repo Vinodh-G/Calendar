@@ -19,7 +19,8 @@ CalendarViewDelegate {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var calendarContainerView: UIView!
     @IBOutlet weak var calendarContainerViewHeightConstraint: NSLayoutConstraint!
-
+    @IBOutlet weak var agendaViewTopConstriant: NSLayoutConstraint!
+    
     var calendarMonthView: CalendarView?
     var viewModel: AgendaViewDataSource = AgendaViewModel()
     var dateRange: DateRange = DateRange(start: Date().dateByAdding(months: -12),
@@ -28,7 +29,7 @@ CalendarViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureInitialLayout()
-        configureHeader()
+        
         let request = loadEventsRequestParam(dateRange: dateRange)
         viewModel.loadEvents(requestParam: request) { [unowned self] (response) in
             if response.success {
@@ -49,7 +50,12 @@ CalendarViewDelegate {
     func configureInitialLayout() {
         self.navigationController?.isNavigationBarHidden = true
         calendarContainerViewHeightConstraint.constant = view.bounds.size.height * kCalendarMonthViewHeightFactor
-        
+        agendaViewTopConstriant.constant = calendarContainerViewHeightConstraint.constant
+        configureCalendarMonthView()
+        configureHeader()
+    }
+    
+    func configureCalendarMonthView() {
         guard calendarMonthView == nil else { return }
         let calendarView = CalendarView(frame: calendarContainerView.bounds)
         calendarContainerView.addSubview(calendarView)
@@ -136,7 +142,6 @@ CalendarViewDelegate {
     
     // MARK: CalendarViewDatasource
     func startDate() -> Date {
-        //TODO: should be given from some other place, right now hard coding for testing
         return dateRange.start
     }
     
@@ -148,5 +153,10 @@ CalendarViewDelegate {
     func didSelectedDate(date: Date) {
         viewModel.selectedDate = date
         scrollAgendaViewTo(date: date, animated: true)
+    }
+    
+    func didTapOnHeader() {
+        // TODO: tobe looked into, for testsing added this code
+        expandCalendarMonthView(expand: !(agendaViewTopConstriant.constant > 44))
     }
 }

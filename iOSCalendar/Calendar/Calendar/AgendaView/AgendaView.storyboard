@@ -66,13 +66,14 @@
                             <constraint firstItem="AXG-E2-c26" firstAttribute="trailing" secondItem="e4g-lj-ONL" secondAttribute="trailing" id="LUH-Ss-1Pf"/>
                             <constraint firstItem="AXG-E2-c26" firstAttribute="bottom" secondItem="e4g-lj-ONL" secondAttribute="bottom" id="Oau-pG-5gz"/>
                             <constraint firstItem="oIK-fz-s1b" firstAttribute="top" secondItem="e4g-lj-ONL" secondAttribute="top" id="UvG-ay-E3I"/>
-                            <constraint firstItem="AXG-E2-c26" firstAttribute="top" secondItem="oIK-fz-s1b" secondAttribute="bottom" constant="8" id="kde-69-IEi"/>
+                            <constraint firstItem="AXG-E2-c26" firstAttribute="top" secondItem="e4g-lj-ONL" secondAttribute="top" constant="262" id="ZtH-lT-0c1"/>
                             <constraint firstItem="AXG-E2-c26" firstAttribute="leading" secondItem="e4g-lj-ONL" secondAttribute="leading" id="zIg-mg-g8z"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="e4g-lj-ONL"/>
                     </view>
                     <navigationItem key="navigationItem" id="RUo-v0-g90"/>
                     <connections>
+                        <outlet property="agendaViewTopConstriant" destination="ZtH-lT-0c1" id="0z1-tN-g69"/>
                         <outlet property="calendarContainerView" destination="oIK-fz-s1b" id="2tu-S1-lHO"/>
                         <outlet property="calendarContainerViewHeightConstraint" destination="yko-B8-zLT" id="UCW-Mh-ogf"/>
                         <outlet property="tableView" destination="AXG-E2-c26" id="KUw-l3-aak"/>
@@ -80,7 +81,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="42h-s6-tGJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="543" y="27"/>
+            <point key="canvasLocation" x="926" y="27"/>
         </scene>
     </scenes>
 </document>

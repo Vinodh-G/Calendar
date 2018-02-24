@@ -11,6 +11,13 @@ import UIKit
 extension AgendaViewController : UIScrollViewDelegate {
     
     // MARK: UIScrollViewDelegate
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    }
+    
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         scrollCalendarViewForVisibleDay()
     }
@@ -29,5 +36,18 @@ extension AgendaViewController : UIScrollViewDelegate {
             guard let calendarView = calendarMonthView else { return }
             calendarView.scrollTo(date: date, animated: true)
         }
+    }
+}
+
+extension AgendaViewController {
+    func expandCalendarMonthView(expand:Bool) {
+        
+        let topHeight = expand ? calendarContainerViewHeightConstraint.constant : 44
+        let animator = UIViewPropertyAnimator(duration: 0.5, dampingRatio: 0.8) {
+            self.view.bringSubview(toFront: self.tableView)
+            self.agendaViewTopConstriant.constant = topHeight
+            self.view.layoutIfNeeded()
+        }
+        animator.startAnimation()
     }
 }
