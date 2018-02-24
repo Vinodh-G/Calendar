@@ -23,6 +23,11 @@ protocol CalendarViewDelegate {
     func didSelectedDate(date:Date)
 }
 
+protocol CalendarHeaderViewConfigure {
+    func configureRight(barButton: UIButton)
+    func configureLeft(barButton: UIButton)
+}
+
 class CalendarView: UIView {
     
     var headerView: CalendarHeaderView!
@@ -54,10 +59,10 @@ class CalendarView: UIView {
         configureViewModel()
     }
     
-    func set(selectedDate:Date, animated:Bool) {
+    func set(selectedDate: Date, animated: Bool) {
         viewModel.set(selectedDate: selectedDate)
         guard let selectedDay = viewModel.selectedDay else { return }
-        scrollTo(selectedDay: selectedDay, animated: animated)
+        scrollTo(day: selectedDay, animated: animated)
         
         if let month = visibleMonthForCurrentOffset() {
             updateMonthTitleFor(visibleMonth: month)
@@ -116,8 +121,14 @@ class CalendarView: UIView {
         headerView.setMonth(title: visibleMonth.monthTitle)
     }
    
-    func scrollTo(selectedDay:CalendarDayCellViewModel, animated:Bool) {
-        guard let month = viewModel.monthFor(date: selectedDay.date) else { return }
+    private func scrollTo(day: CalendarDayCellViewModel, animated: Bool) {
+        guard let month = viewModel.monthFor(date: day.date) else { return }
+        guard let monthIndex = viewModel.months.index(where: { $0.startDate == month.startDate }) else { return }
+        collectionView.scrollToItem(at: IndexPath(item: 0, section: monthIndex), at: .left, animated: animated)
+    }
+    
+    func scrollTo(date: Date, animated: Bool) {
+        guard let month = viewModel.monthFor(date: date) else { return }
         guard let monthIndex = viewModel.months.index(where: { $0.startDate == month.startDate }) else { return }
         collectionView.scrollToItem(at: IndexPath(item: 0, section: monthIndex), at: .left, animated: animated)
     }

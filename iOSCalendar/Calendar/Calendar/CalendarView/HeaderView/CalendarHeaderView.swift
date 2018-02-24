@@ -12,6 +12,8 @@ protocol CalendarHeaderViewAction {
     var didTapOnHeaderBlock:CalendarHeaderViewActionBlock? { get set }
 }
 
+let kPaddingDist: CGFloat = 20.0
+
 class CalendarHeaderView: UIView, CalendarHeaderViewAction {
     
     var didTapOnHeaderBlock: CalendarHeaderViewActionBlock?
@@ -44,10 +46,42 @@ class CalendarHeaderView: UIView, CalendarHeaderViewAction {
         let margins = safeAreaLayoutGuide
         view.topAnchor.constraint(equalTo: margins.topAnchor).isActive = true
         view.bottomAnchor.constraint(equalTo: margins.bottomAnchor).isActive = true
-        view.leadingAnchor.constraint(equalTo: margins.leadingAnchor).isActive = true
-        view.trailingAnchor.constraint(equalTo: margins.trailingAnchor).isActive = true
+        view.leadingAnchor.constraint(equalTo: margins.leadingAnchor,
+                                      constant: CalendarHeaderView.buttonSize.width + CalendarHeaderView.marginPadding).isActive = true
+        view.trailingAnchor.constraint(equalTo: margins.trailingAnchor,
+                                       constant: -(CalendarHeaderView.buttonSize.width + CalendarHeaderView.marginPadding)).isActive = true
         return view
     }()
+    
+    var leftButton: UIButton? {
+        
+        didSet {
+            guard let button = leftButton else { return }
+            self.addSubview(button)
+            let margins = safeAreaLayoutGuide
+            button.translatesAutoresizingMaskIntoConstraints = false
+            button.topAnchor.constraint(equalTo: margins.topAnchor, constant:8).isActive = true
+            button.leadingAnchor.constraint(equalTo: margins.leadingAnchor,  constant:8).isActive = true
+            button.heightAnchor.constraint(equalToConstant: CalendarHeaderView.buttonSize.height)
+            button.widthAnchor.constraint(equalToConstant: CalendarHeaderView.buttonSize.width)
+            button.centerYAnchor.constraint(equalTo: margins.centerYAnchor)
+        }
+    }
+    
+    var rightButton: UIButton? {
+        
+        didSet {
+            guard let button = rightButton else { return }
+            self.addSubview(button)
+            let margins = safeAreaLayoutGuide
+            button.translatesAutoresizingMaskIntoConstraints = false
+            button.topAnchor.constraint(equalTo: margins.topAnchor, constant:-8).isActive = true
+            button.trailingAnchor.constraint(equalTo: margins.trailingAnchor,  constant:-8).isActive = true
+            button.heightAnchor.constraint(equalToConstant: CalendarHeaderView.buttonSize.height)
+            button.widthAnchor.constraint(equalToConstant: CalendarHeaderView.buttonSize.width)
+            button.centerYAnchor.constraint(equalTo: margins.centerYAnchor)
+        }
+    }
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -63,5 +97,21 @@ class CalendarHeaderView: UIView, CalendarHeaderViewAction {
     
     func setMonth(title:String) {
         monthTitleView.monthLabel.text = title
+    }
+}
+
+extension CalendarHeaderView {
+    static var buttonSize : CGSize {
+        switch UIDevice.current.userInterfaceIdiom {
+        case .phone : return CGSize(width: 30, height: 30)
+        default : return CGSize(width: 40, height: 40)
+        }
+    }
+    
+    static var marginPadding : CGFloat {
+        switch UIDevice.current.userInterfaceIdiom {
+        case .phone : return 20
+        default : return 20
+        }
     }
 }

@@ -8,13 +8,12 @@
 
 import UIKit
 
-let kPaddingDist: CGFloat = 20.0
 
 class MonthTitleView: UIView {
     lazy var monthLabel: UILabel = {
-        let monthlabelFrame = CGRect(x: kPaddingDist,
+        let monthlabelFrame = CGRect(x: 0,
                                 y: 0,
-                                width: self.bounds.size.width - 2 * kPaddingDist,
+                                width: self.bounds.size.width,
                                 height: self.bounds.size.height)
         
         let label = UILabel(frame: monthlabelFrame)

@@ -36,6 +36,7 @@ protocol AgendaViewDataSource {
     var selectedDate: Date { get set }
     var days: [DayViewDatasource] { get set }
     func indexPathFor(date: Date) -> IndexPath?
+    func dateFor(indexPath: IndexPath) -> Date
     func loadEvents(requestParam: loadEventsRequestParam, completionBlock: @escaping loadEventsCompletionBlock)
 }
 
@@ -48,6 +49,11 @@ class AgendaViewModel: AgendaViewDataSource{
         guard let day = daysCache[DateFormatter.shared.dateTitleFor(date: date)] else { return nil }
         guard let index = days.index(where: {$0.date == day.date}) else { return nil }
         return IndexPath(item: 0, section: index)
+    }
+    
+    func dateFor(indexPath: IndexPath) -> Date {
+        let day = days[indexPath.section]
+        return day.date
     }
     
     func loadEvents(requestParam:loadEventsRequestParam,

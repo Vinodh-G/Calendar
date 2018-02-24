@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		873F6F57204172F400F3F950 /* CalendarView+LayoutSetUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873F6F56204172F400F3F950 /* CalendarView+LayoutSetUp.swift */; };
+		873F6F5B2041AB5000F3F950 /* AgendaViewController+ScrollDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873F6F5A2041AB5000F3F950 /* AgendaViewController+ScrollDelegate.swift */; };
+		873F6F5D2041BACE00F3F950 /* CalendarView+HeaderViewConfigure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873F6F5C2041BACE00F3F950 /* CalendarView+HeaderViewConfigure.swift */; };
 		8775BBB520305064005DAF59 /* CalendarMonthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8775BBB420305064005DAF59 /* CalendarMonthViewModel.swift */; };
 		8775BBB720305345005DAF59 /* CalendarMonthLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8775BBB620305345005DAF59 /* CalendarMonthLayout.swift */; };
 		8775BBBA2030C0F7005DAF59 /* CalendarView+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8775BBB92030C0F7005DAF59 /* CalendarView+Delegate.swift */; };
@@ -56,6 +58,8 @@
 
 /* Begin PBXFileReference section */
 		873F6F56204172F400F3F950 /* CalendarView+LayoutSetUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CalendarView+LayoutSetUp.swift"; sourceTree = "<group>"; };
+		873F6F5A2041AB5000F3F950 /* AgendaViewController+ScrollDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AgendaViewController+ScrollDelegate.swift"; sourceTree = "<group>"; };
+		873F6F5C2041BACE00F3F950 /* CalendarView+HeaderViewConfigure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CalendarView+HeaderViewConfigure.swift"; sourceTree = "<group>"; };
 		8775BBB420305064005DAF59 /* CalendarMonthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarMonthViewModel.swift; sourceTree = "<group>"; };
 		8775BBB620305345005DAF59 /* CalendarMonthLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarMonthLayout.swift; sourceTree = "<group>"; };
 		8775BBB92030C0F7005DAF59 /* CalendarView+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CalendarView+Delegate.swift"; sourceTree = "<group>"; };
@@ -129,6 +133,7 @@
 				87FB4262203036290003C974 /* CalendarView+DataSource.swift */,
 				8775BBB92030C0F7005DAF59 /* CalendarView+Delegate.swift */,
 				873F6F56204172F400F3F950 /* CalendarView+LayoutSetUp.swift */,
+				873F6F5C2041BACE00F3F950 /* CalendarView+HeaderViewConfigure.swift */,
 			);
 			path = "CalendarView+Extensions";
 			sourceTree = "<group>";
@@ -147,6 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				879FB3AF2039EECE00033E0E /* AgendaViewController.swift */,
+				873F6F5A2041AB5000F3F950 /* AgendaViewController+ScrollDelegate.swift */,
 				879FB3E6203ABF4E00033E0E /* AgendaViewUpdate.swift */,
 				879FB3B82039F23600033E0E /* AgendaViewModel.swift */,
 				879FB3BC2039F9A900033E0E /* DayViewModel.swift */,
@@ -377,11 +383,13 @@
 				879FB359203821DD00033E0E /* MonthTitleView.swift in Sources */,
 				87FB42672030395C0003C974 /* CalendarDayCell.swift in Sources */,
 				879FB3B92039F23600033E0E /* AgendaViewModel.swift in Sources */,
+				873F6F5D2041BACE00F3F950 /* CalendarView+HeaderViewConfigure.swift in Sources */,
 				87FB425520301A840003C974 /* CalendarHeaderView.swift in Sources */,
 				879FB3B02039EECE00033E0E /* AgendaViewController.swift in Sources */,
 				879FB3BB2039F77800033E0E /* CalendarEvent.swift in Sources */,
 				8775BBB720305345005DAF59 /* CalendarMonthLayout.swift in Sources */,
 				87E9E05D2036012E00CA21BA /* CalendarViewModel.swift in Sources */,
+				873F6F5B2041AB5000F3F950 /* AgendaViewController+ScrollDelegate.swift in Sources */,
 				87FB425F20302DB80003C974 /* WeekDaysTitleViewModel.swift in Sources */,
 				87FB4230203013200003C974 /* AppDelegate.swift in Sources */,
 				87FB4263203036290003C974 /* CalendarView+DataSource.swift in Sources */,

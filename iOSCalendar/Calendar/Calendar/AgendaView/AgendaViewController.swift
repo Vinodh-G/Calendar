@@ -28,11 +28,12 @@ CalendarViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureInitialLayout()
-        
+        configureHeader()
         let request = loadEventsRequestParam(dateRange: dateRange)
         viewModel.loadEvents(requestParam: request) { [unowned self] (response) in
             if response.success {
                 self.handleViewUpdates(update: response.updates)
+                self.scrollAgendaViewTo(date: self.viewModel.selectedDate, animated: false)
             }
         }
     }
@@ -65,6 +66,19 @@ CalendarViewDelegate {
         calendarMonthView = calendarView
     }
 
+    func configureHeader() {
+        guard let calendarView = calendarMonthView else { return }
+        let button = UIButton(type: .custom)
+        button.backgroundColor = .purple
+        button.addTarget(self, action: #selector(AgendaViewController.showTodaysAgenda), for: .touchUpInside)
+        calendarView.configureRight(barButton: button)
+        
+        let leftbutton = UIButton(type: .custom)
+        leftbutton.backgroundColor = .purple
+        leftbutton.addTarget(self, action: #selector(AgendaViewController.showTodaysAgenda), for: .touchUpInside)
+        calendarView.configureLeft(barButton: button)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -114,7 +128,10 @@ CalendarViewDelegate {
     }
     
     @IBAction func showTodaysAgenda(_ sender: Any) {
-        scrollAgendaViewTo(date: Date(), animated: true)
+        let today = Date()
+        scrollAgendaViewTo(date: today, animated: true)
+        guard let calendarView = calendarMonthView else { return }
+        calendarView.set(selectedDate: today, animated: true)
     }
     
     // MARK: CalendarViewDatasource
