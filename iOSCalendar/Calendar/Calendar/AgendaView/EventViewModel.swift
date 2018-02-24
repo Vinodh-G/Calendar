@@ -9,13 +9,15 @@
 import Foundation
 
 protocol EventViewDatasource {
+    var eventId: String { get }
     var startDate: Date { get }
     var endDate: Date { get }
     var title: String { get }
 }
 
 class EventViewModel: EventViewDatasource {
-    
+
+    var eventId: String
     var startDate: Date{
         return calendarEvent.startDate
     }
@@ -32,5 +34,25 @@ class EventViewModel: EventViewDatasource {
     
     init(calendarEvent:CalendarEvent) {
         self.calendarEvent = calendarEvent
+        eventId = ProcessInfo.processInfo.globallyUniqueString
+    }
+}
+
+let kNoEventsTitle: String = "No Events"
+
+class NoEventViewModel: EventViewDatasource {
+    
+    var eventId: String
+    var startDate: Date
+    var endDate: Date
+    
+    var title: String {
+        return kNoEventsTitle
+    }
+    
+    init(date:Date) {
+        startDate = date
+        endDate = date
+        eventId = ProcessInfo.processInfo.globallyUniqueString
     }
 }

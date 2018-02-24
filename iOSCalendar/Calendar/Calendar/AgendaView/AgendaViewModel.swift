@@ -13,7 +13,7 @@ struct DateRange {
     var months:Int = 0
     var years:Int = 0
     
-    var endDate:Date {
+    var end:Date {
         let totalMonths = months + years * 12
         return start.dateByAdding(months: totalMonths)
     }
@@ -33,26 +33,30 @@ struct loadEventsResponseParam{
 }
 
 protocol AgendaViewDataSource {
+    var selectedDate: Date { get set }
     var days: [DayViewDatasource] { get set }
-    func indexSetFor(date: Date) -> IndexPath?
+    func indexPathFor(date: Date) -> IndexPath?
     func loadEvents(requestParam: loadEventsRequestParam, completionBlock: @escaping loadEventsCompletionBlock)
 }
 
 class AgendaViewModel: AgendaViewDataSource{
-        
+    var selectedDate: Date = Date()
     var days: [DayViewDatasource] = []
     var daysCache: [String: DayViewDatasource] = [:]
     
-    func indexSetFor(date: Date) -> IndexPath?{
+    func indexPathFor(date: Date) -> IndexPath?{
         guard let day = daysCache[DateFormatter.shared.dateTitleFor(date: date)] else { return nil }
         guard let index = days.index(where: {$0.date == day.date}) else { return nil }
         return IndexPath(item: 0, section: index)
     }
     
-    func loadEvents(requestParam:loadEventsRequestParam, completionBlock:@escaping loadEventsCompletionBlock) {
+    func loadEvents(requestParam:loadEventsRequestParam,
+                    completionBlock:@escaping loadEventsCompletionBlock) {
         
         let startDate = requestParam.dateRange.start
-        let endDate = requestParam.dateRange.endDate
+        let endDate = requestParam.dateRange.end
+        days = createDaysFor(dateRange: requestParam.dateRange)
+        
         EventsLoader.load(from: startDate,
                           to: endDate){ (events) in
                             if events != nil {
@@ -66,33 +70,39 @@ class AgendaViewModel: AgendaViewDataSource{
         }
     }
     
+    func createDaysFor(dateRange:DateRange) -> [DayViewDatasource] {
+        var days: [DayViewDatasource] = []
+        let formatter = DateFormatter.shared
+        let numOfDays = Date.daysBetween(startDate: dateRange.start,
+                                         endDate: dateRange.end)
+        let startDate = dateRange.start
+        for dayIndex in stride(from: 0, to: numOfDays, by: 1) {
+            let date = startDate.dateByAdding(days: dayIndex)
+            let dayVM = DayViewModel(date: date)
+            daysCache[formatter.dateTitleFor(date: date)] = dayVM
+            days.append(dayVM)
+        }
+        return days
+    }
+    
+    // TODO: This api designed to make use of AgendaViewUpdate to generate the
+    // tableview sections and rows update when filling the calendar events data into the viewmodel data source
+    // This AgendaViewUpdate is currently not used
     func populateEventsFrom(events:[CalendarEvent]) -> AgendaViewUpdate {
         
-        var viewUpdate = AgendaViewUpdate()
-        
+        let viewUpdate = AgendaViewUpdate()
         let sortedEvents = events.sorted { (event1, event2) -> Bool in
             return event1.startDate < event2.startDate
         }
         
         let formatter = DateFormatter.shared
         for event in sortedEvents {
-         
-            var dayVM = daysCache[formatter.dateTitleFor(date: event.startDate)]
-            if dayVM == nil {
-                dayVM = DayViewModel(date: event.startDate)
-                daysCache[formatter.dateTitleFor(date: event.startDate)] = dayVM
-                days.append(dayVM!)
-                
-                let sectionIndex = days.count - 1
-                let indexSet = IndexSet(integer:sectionIndex)
-                let sectionUpdate = SectionUpdate(type: .insert, sectionIndex: indexSet)
-                viewUpdate.sectionsUpdate.append(sectionUpdate)
-            }
             
-            let eventVM = EventViewModel(calendarEvent: event)
-            dayVM?.events.append(eventVM)
+            if let dayVM = daysCache[formatter.dateTitleFor(date: event.startDate)] {
+                let eventVM = EventViewModel(calendarEvent: event)
+                dayVM.add(event: eventVM)
+            }
         }
-        
         return viewUpdate
     }
 }

@@ -12,7 +12,7 @@
         <!--Navigation Controller-->
         <scene sceneID="TK3-45-qsP">
             <objects>
-                <navigationController id="95T-A1-ZgQ" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="AgendaNavigationControllerId" id="95T-A1-ZgQ" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="7Sp-kU-gEL">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -80,7 +80,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="42h-s6-tGJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="976.79999999999995" y="30.134932533733135"/>
+            <point key="canvasLocation" x="543" y="27"/>
         </scene>
     </scenes>
 </document>

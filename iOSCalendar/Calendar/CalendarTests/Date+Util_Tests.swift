@@ -239,4 +239,43 @@ class Date_Util_Tests: XCTestCase {
         let months = Date.monthsBetween(startDate:startdate, endDate:enddate)
         XCTAssertEqual(months, 11)
     }
+    
+    func testDaysBetweenDatesYr() {
+        var date = Date()
+        // create date 1st Jan
+        var components =  Calendar.current.dateComponents([.year, .month, .day], from: date)
+        components.month = 1
+        components.day = 1
+        components.year = 2018
+        let startdate = Calendar.current.date(from: components)!
+        
+        date = Date()
+        components =  Calendar.current.dateComponents([.year, .month, .day], from: date)
+        components.month = 1
+        components.day = 26
+        components.year = 2020
+        let enddate = Calendar.current.date(from: components)!
+        let days = Date.daysBetween(startDate:startdate, endDate:enddate)
+        XCTAssertEqual(days, 755)
+    }
+    
+    func testDaysBetweenDatesMonths() {
+        var date = Date()
+        // create date 4th Jan
+        var components =  Calendar.current.dateComponents([.year, .month, .day], from: date)
+        components.month = 1
+        components.day = 4
+        components.year = 2018
+        let startdate = Calendar.current.date(from: components)!
+        
+        date = Date()
+        // create date 3rd Feb
+        components =  Calendar.current.dateComponents([.year, .month, .day], from: date)
+        components.month = 12
+        components.day = 1
+        components.year = 2018
+        let enddate = Calendar.current.date(from: components)!
+        let days = Date.daysBetween(startDate:startdate, endDate:enddate)
+        XCTAssertEqual(days, 331)
+    }
 }

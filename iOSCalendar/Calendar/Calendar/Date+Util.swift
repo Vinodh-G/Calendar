@@ -68,5 +68,11 @@ extension Date {
             months = components.month!
         }
         return months
-    }    
+    }
+    
+    public static func daysBetween(startDate:Date, endDate:Date) -> Int {
+        let components = Calendar.current.dateComponents([.day], from: startDate, to: endDate)
+        guard let days = components.day else { return 0 }
+        return days
+    }
 }

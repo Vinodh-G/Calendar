@@ -39,6 +39,8 @@ class CalendarViewModel {
     
     func update(newSelectedDay: CalendarDayCellViewModel) {
 
+        guard newSelectedDay != selectedDay else { return }
+        
         var viewUpdate = CalendarViewUpdate()
         if selectedDay != nil, let oldIndexPath = indexPathFor(day: selectedDay!) {
             viewUpdate.isUpdated = true
