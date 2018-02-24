@@ -12,39 +12,34 @@ import EventKit
 class EventsLoader {
     private static let store = EKEventStore()
     
-    static func load(from fromDate: Date, to toDate: Date, complete onComplete: @escaping ([CalendarEvent]?) -> Void) {
+    static func load(fromDate: Date,
+                     toDate: Date,
+                    onCompletion: @escaping ([EKEvent]?) -> Void) {
         
         let mainQueue = DispatchQueue.main
         guard EKEventStore.authorizationStatus(for: .event) == .authorized else {
             
-            return EventsLoader.store.requestAccess(to: EKEntityType.event, completion: {(granted, error) -> Void in
+            return EventsLoader.store.requestAccess(to: EKEntityType.event,
+                                                    completion: {(granted, error) -> Void in
                 guard granted else {
-                    return mainQueue.async { onComplete(nil) }
+                    return mainQueue.async { onCompletion(nil) }
                 }
-                EventsLoader.fetch(from: fromDate, to: toDate) { events in
-                    mainQueue.async { onComplete(events) }
+                EventsLoader.fetch(from: fromDate,
+                                   to: toDate) { events in
+                    mainQueue.async { onCompletion(events) }
                 }
             })
         }
         
         EventsLoader.fetch(from: fromDate, to: toDate) { events in
-            mainQueue.async { onComplete(events) }
+            mainQueue.async { onCompletion(events) }
         }
     }
     
-    private static func fetch(from fromDate: Date, to toDate: Date, complete onComplete: @escaping ([CalendarEvent]) -> Void) {
+    private static func fetch(from fromDate: Date, to toDate: Date, complete onComplete: @escaping ([EKEvent]) -> Void) {
         
         let predicate = store.predicateForEvents(withStart: fromDate, end: toDate, calendars: nil)
-        
-//        let secondsFromGMTDifference = TimeInterval(TimeZone.current.secondsFromGMT())
-
-        let events = store.events(matching: predicate).map { (event) -> CalendarEvent in
-            let calendarEvent = CalendarEvent(startDate:event.startDate,
-                                              endDate: event.endDate,
-                                              title: event.title)
-            calendarEvent.isAllDay = event.isAllDay
-            return calendarEvent
-        }
+        let events = store.events(matching: predicate)
         onComplete(events)
     }
 }

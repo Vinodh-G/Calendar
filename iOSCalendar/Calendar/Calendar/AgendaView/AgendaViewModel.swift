@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import EventKit
 
 struct DateRange {
     var start:Date
@@ -63,8 +64,8 @@ class AgendaViewModel: AgendaViewDataSource{
         let endDate = requestParam.dateRange.end
         days = createDaysFor(dateRange: requestParam.dateRange)
         
-        EventsLoader.load(from: startDate,
-                          to: endDate){ (events) in
+        EventsLoader.load(fromDate: startDate,
+                          toDate: endDate){ (events) in
                             if events != nil {
                                 let updates = self.populateEventsFrom(events: events!)
                                 let response = loadEventsResponseParam(success: true,
@@ -94,7 +95,7 @@ class AgendaViewModel: AgendaViewDataSource{
     // TODO: This api designed to make use of AgendaViewUpdate to generate the
     // tableview sections and rows update when filling the calendar events data into the viewmodel data source
     // This AgendaViewUpdate is currently not used
-    func populateEventsFrom(events:[CalendarEvent]) -> AgendaViewUpdate {
+    func populateEventsFrom(events:[EKEvent]) -> AgendaViewUpdate {
         
         let viewUpdate = AgendaViewUpdate()
         let sortedEvents = events.sorted { (event1, event2) -> Bool in

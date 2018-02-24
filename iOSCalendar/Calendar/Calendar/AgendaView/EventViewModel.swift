@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import EventKit
 
 protocol EventViewDatasource {
     var eventId: String { get }
@@ -30,9 +31,9 @@ class EventViewModel: EventViewDatasource {
         return calendarEvent.title
     }
     
-    var calendarEvent: CalendarEvent
+    var calendarEvent: EKEvent
     
-    init(calendarEvent:CalendarEvent) {
+    init(calendarEvent:EKEvent) {
         self.calendarEvent = calendarEvent
         eventId = ProcessInfo.processInfo.globallyUniqueString
     }
