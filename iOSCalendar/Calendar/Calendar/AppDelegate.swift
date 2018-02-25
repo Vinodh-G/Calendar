@@ -51,22 +51,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     }
 }
 
-extension UISplitViewController {
-
-    open override var supportedInterfaceOrientations: UIInterfaceOrientationMask{
-        if UIDevice.current.userInterfaceIdiom == .phone {
-            return .portrait
-        } else {
-            return .landscape
-        }
-    }
-    
-    open override var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation {
-        if UIDevice.current.userInterfaceIdiom == .pad {
-            return .landscapeRight
-        } else {
-            return .portrait
-        }
-    }
-}
-

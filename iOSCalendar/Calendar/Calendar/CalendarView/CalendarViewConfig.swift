@@ -9,9 +9,9 @@
 import UIKit
 
 internal let kHeaderHeightiPhone: CGFloat = 44.0
-internal let kHeaderHeightiPad: CGFloat = 64.0
+internal let kHeaderHeightiPad: CGFloat = 44.0
 internal let kWeekTitleHeightiPhone: CGFloat = 20.0
-internal let kWeekTitleHeightiPad: CGFloat = 24.0
+internal let kWeekTitleHeightiPad: CGFloat = 20.0
 
 class CalendarViewConfig {
     
@@ -42,7 +42,7 @@ class CalendarViewConfig {
     public var headerTitleColor = UIColor.darkText
     public var headerFont: UIFont = UIFont.systemFont(ofSize: 20, weight: .semibold)
     
-    public var weekTitleColor = UIColor.gray
+    public var weekTitleColor = UIColor.lightGray
     public var weekHeaderFont: UIFont = UIFont.systemFont(ofSize: 14, weight: .regular)
 
     

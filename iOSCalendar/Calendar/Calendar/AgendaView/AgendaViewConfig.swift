@@ -12,7 +12,7 @@ internal let kCalendarMonthViewHeightFactoriPhone: CGFloat = 0.48
 internal let kCalendarMonthViewHeightFactoriPad: CGFloat = 0.33
 internal let kDefaultTableCellHeight: CGFloat = 44.0
 internal let kAgendaViewHeaderHeightiPhone: CGFloat = 74.0
-internal let kAgendaViewHeaderHeightiPad: CGFloat = 94.0
+internal let kAgendaViewHeaderHeightiPad: CGFloat = 78.0
 
 class AgendaViewConfig {
     
@@ -60,4 +60,8 @@ class AgendaViewConfig {
     public var statusViewColorConfirmed = UIColor(displayP3Red: 40.0/255, green: 206.5/255, blue: 102.0/255, alpha: 1)
     public var statusViewColorNotConfirmed = UIColor(displayP3Red: 144.0/255, green: 152.5/255, blue: 179.0/255, alpha: 1)
 
+    //Agenda
+    public var agendaviewShadowRadius: CGFloat = 2
+    public var agendaviewShadowOpacity: Float = 0.3
+    public var agendaviewShadowOffset = CGSize(width: 0, height: -4)
 }

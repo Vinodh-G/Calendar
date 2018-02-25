@@ -43,7 +43,10 @@ extension AgendaViewController : UIScrollViewDelegate {
 }
 
 extension AgendaViewController {
+    
     func expandCalendarMonthView(expand:Bool) {
+    
+        guard UIDevice.current.userInterfaceIdiom == .phone else { return }
         
         let topHeight = expand ? view.bounds.size.height * AgendaViewConfig.defaultConfig.heightFactor : AgendaViewConfig.defaultConfig.headerHieght
         let animator = UIViewPropertyAnimator(duration: 0.5, dampingRatio: 0.8) {
