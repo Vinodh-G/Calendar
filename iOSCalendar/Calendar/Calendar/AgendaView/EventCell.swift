@@ -42,12 +42,16 @@ class EventCell: UITableViewCell {
         guard let cellModel = viewModel else { return }
         eventTitleLabel.text = cellModel.title
         eventDetailLabel.text = cellModel.detail
+        
         if cellModel.isAllDay {
             startTimeLabel.text = cellModel.alldayTitle
+        } else if cellModel.detail.count == 0 {
+            startTimeLabel.text = cellModel.dateSpan
         } else {
             startTimeLabel.text = cellModel.startDate
             endTimeLabel.text = cellModel.endDate
         }
+        
         statusView.backgroundColor = colorFor(status: cellModel.status)
     }
     

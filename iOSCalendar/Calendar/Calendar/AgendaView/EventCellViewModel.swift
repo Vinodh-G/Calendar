@@ -18,6 +18,7 @@ protocol EventViewDatasource {
     var eventId: String { get }
     var startDate: String { get }
     var endDate: String { get }
+    var dateSpan: String { get }
     var title: String { get }
     var detail: String { get }
     var status: EventViewModelStatus { get }
@@ -29,14 +30,19 @@ class EventCellViewModel: EventViewDatasource {
     
     var eventId: String
     var startDate: String {
-        return DateFormatter.shared.timeStringFor(date:calendarEvent.startDate,
+        return formatter.timeStringFor(date:calendarEvent.startDate,
                                                   format: k24TimeFormat)
     }
     
     var endDate: String {
-        return DateFormatter.shared.timeStringFor(date:calendarEvent.endDate,
+        return formatter.timeStringFor(date:calendarEvent.endDate,
                                                   format: k24TimeFormat)
     }
+    
+    var dateSpan: String {
+        return "\(startDate)-\(endDate)"
+    }
+
     
     var title: String {
         return calendarEvent.title
@@ -69,6 +75,7 @@ class EventCellViewModel: EventViewDatasource {
     }
     
     var calendarEvent: EKEvent
+    let formatter: DateFormatter = DateFormatter.shared
     
     init(calendarEvent:EKEvent) {
         self.calendarEvent = calendarEvent
