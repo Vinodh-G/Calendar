@@ -16,20 +16,21 @@ CalendarViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var calendarContainerView: UIView!
+    @IBOutlet weak var agendaContainerView: UIView!
     @IBOutlet weak var calendarContainerViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var agendaViewTopConstriant: NSLayoutConstraint!
     
     var calendarMonthView: CalendarView?
     var viewModel: AgendaViewDataSource = AgendaViewModel()
     
-    // Creating a date range of 4 years 2 previous years back and 2 upcoming years
-    var dateRange: DateRange = DateRange(start: Date().dateByAdding(months: -24),
-                                         months: 48,
+    // Creating a date range of 2 years 1 previous years back and 1 upcoming years
+    var dateRange: DateRange = DateRange(start: Date().dateByAdding(months: -12),
+                                         months: 24,
                                          years: 0)
     override func viewDidLoad() {
         super.viewDidLoad()
         configureInitialLayout()
-        
+        addShadow(to: agendaContainerView)
         let request = loadEventsRequestParam(dateRange: dateRange)
         viewModel.loadEvents(requestParam: request) { [unowned self] (response) in
             if response.success {
@@ -45,6 +46,7 @@ CalendarViewDelegate {
         let today = Date()
         viewModel.selectedDate = today
         calendarView.set(selectedDate: today, animated: false)
+        expandCalendarMonthView(expand: false)
     }
     
     func configureInitialLayout() {
@@ -179,6 +181,6 @@ CalendarViewDelegate {
     
     func didTapOnHeader() {
         // TODO: tobe looked into, for testsing added this code
-        expandCalendarMonthView(expand: !(agendaViewTopConstriant.constant > 44))
+        expandCalendarMonthView(expand: !(agendaViewTopConstriant.constant > AgendaViewConfig.defaultConfig.headerHieght))
     }
 }

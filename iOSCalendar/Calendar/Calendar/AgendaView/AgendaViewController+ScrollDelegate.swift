@@ -45,9 +45,9 @@ extension AgendaViewController : UIScrollViewDelegate {
 extension AgendaViewController {
     func expandCalendarMonthView(expand:Bool) {
         
-        let topHeight = expand ? calendarContainerViewHeightConstraint.constant : 44
+        let topHeight = expand ? view.bounds.size.height * AgendaViewConfig.defaultConfig.heightFactor : AgendaViewConfig.defaultConfig.headerHieght
         let animator = UIViewPropertyAnimator(duration: 0.5, dampingRatio: 0.8) {
-            self.view.bringSubview(toFront: self.tableView)
+            self.view.bringSubview(toFront: self.agendaContainerView)
             self.agendaViewTopConstriant.constant = topHeight
             self.view.layoutIfNeeded()
         }

@@ -8,30 +8,32 @@
 
 import UIKit
 
-let kHeaderHeightiPhone: CGFloat = 44.0
-let kHeaderHeightiPad: CGFloat = 64.0
-let kWeekTitleHeightiPhone: CGFloat = 20.0
-let kWeekTitleHeightiPad: CGFloat = 24.0
+internal let kHeaderHeightiPhone: CGFloat = 44.0
+internal let kHeaderHeightiPad: CGFloat = 64.0
+internal let kWeekTitleHeightiPhone: CGFloat = 20.0
+internal let kWeekTitleHeightiPad: CGFloat = 24.0
 
 class CalendarViewConfig {
     
-    public static let defaultConfig : CalendarViewConfig = {
+    public static let defaultConfig: CalendarViewConfig = {
         let instance = CalendarViewConfig()
         return instance
     }()
     
     //Header
 
-    var headerHieght : CGFloat {
+    var headerHieght: CGFloat {
         switch UIDevice.current.userInterfaceIdiom {
-        case .phone : return kHeaderHeightiPhone
-        default : return kHeaderHeightiPad
+        case .phone: return kHeaderHeightiPhone
+        default: return kHeaderHeightiPad
         }
     }
     
-    var weekTitleHieght : CGFloat {
+    var weekTitleTopPadding: CGFloat = 10;
+    
+    var weekTitleHieght: CGFloat {
         switch UIDevice.current.userInterfaceIdiom {
-        case .phone : return kWeekTitleHeightiPhone
+        case .phone: return kWeekTitleHeightiPhone
         default : return kWeekTitleHeightiPad
         }
     }
@@ -41,11 +43,12 @@ class CalendarViewConfig {
     public var headerFont: UIFont = UIFont.systemFont(ofSize: 20, weight: .semibold)
     
     public var weekTitleColor = UIColor.gray
-    public var weekHeaderFont: UIFont = UIFont.systemFont(ofSize: 14, weight: .semibold)
+    public var weekHeaderFont: UIFont = UIFont.systemFont(ofSize: 14, weight: .regular)
 
     
     // Day CollectionView
     public var dayTitleColor = UIColor(displayP3Red: 31.0/255, green: 31.5/255, blue: 31.0/255, alpha: 1)
-    public var dayTitleFont: UIFont = UIFont.systemFont(ofSize: 16, weight: .regular)
+    public var dayHighlightTitleColor = UIColor.white
+    public var dayTitleFont: UIFont = UIFont.systemFont(ofSize: 14, weight: .regular)
     public var dayhighlightColor = UIColor(displayP3Red: 24.0/255, green: 165.5/255, blue: 211.0/255, alpha: 1)
 }

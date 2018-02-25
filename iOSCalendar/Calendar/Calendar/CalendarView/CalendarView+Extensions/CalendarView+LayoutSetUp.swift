@@ -32,7 +32,7 @@ extension CalendarView {
         addSubview(weekTitleView)
         
         weekTitleView.translatesAutoresizingMaskIntoConstraints = false
-        weekTitleView.topAnchor.constraint(equalTo: layoutMargins.topAnchor, constant:defaultConfig.headerHieght).isActive = true
+        weekTitleView.topAnchor.constraint(equalTo: layoutMargins.topAnchor, constant:defaultConfig.headerHieght + defaultConfig.weekTitleTopPadding).isActive = true
         weekTitleView.leadingAnchor.constraint(equalTo: layoutMargins.leadingAnchor).isActive = true
         weekTitleView.trailingAnchor.constraint(equalTo: layoutMargins.trailingAnchor).isActive = true
         weekTitleView.heightAnchor.constraint(equalToConstant: defaultConfig.weekTitleHieght).isActive = true
@@ -55,7 +55,7 @@ extension CalendarView {
         let layoutMargins = safeAreaLayoutGuide
 
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.topAnchor.constraint(equalTo: layoutMargins.topAnchor, constant:defaultConfig.headerHieght + defaultConfig.weekTitleHieght).isActive = true
+        collectionView.topAnchor.constraint(equalTo: layoutMargins.topAnchor, constant:defaultConfig.headerHieght + defaultConfig.weekTitleHieght + defaultConfig.weekTitleTopPadding).isActive = true
         collectionView.leadingAnchor.constraint(equalTo: layoutMargins.leadingAnchor).isActive = true
         collectionView.trailingAnchor.constraint(equalTo: layoutMargins.trailingAnchor).isActive = true
         collectionView.bottomAnchor.constraint(equalTo: layoutMargins.bottomAnchor).isActive = true

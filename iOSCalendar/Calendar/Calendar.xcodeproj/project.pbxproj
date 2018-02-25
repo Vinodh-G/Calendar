@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		872D6A552042DD7E00C5E73C /* AgendaViewConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872D6A542042DD7E00C5E73C /* AgendaViewConfig.swift */; };
+		872D6A572042E7C100C5E73C /* AgendaViewController+Decorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872D6A562042E7C100C5E73C /* AgendaViewController+Decorator.swift */; };
 		873F6F57204172F400F3F950 /* CalendarView+LayoutSetUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873F6F56204172F400F3F950 /* CalendarView+LayoutSetUp.swift */; };
 		873F6F5B2041AB5000F3F950 /* AgendaViewController+ScrollDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873F6F5A2041AB5000F3F950 /* AgendaViewController+ScrollDelegate.swift */; };
 		873F6F5D2041BACE00F3F950 /* CalendarView+HeaderViewConfigure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873F6F5C2041BACE00F3F950 /* CalendarView+HeaderViewConfigure.swift */; };
@@ -64,6 +65,7 @@
 
 /* Begin PBXFileReference section */
 		872D6A542042DD7E00C5E73C /* AgendaViewConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaViewConfig.swift; sourceTree = "<group>"; };
+		872D6A562042E7C100C5E73C /* AgendaViewController+Decorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AgendaViewController+Decorator.swift"; sourceTree = "<group>"; };
 		873F6F56204172F400F3F950 /* CalendarView+LayoutSetUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CalendarView+LayoutSetUp.swift"; sourceTree = "<group>"; };
 		873F6F5A2041AB5000F3F950 /* AgendaViewController+ScrollDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AgendaViewController+ScrollDelegate.swift"; sourceTree = "<group>"; };
 		873F6F5C2041BACE00F3F950 /* CalendarView+HeaderViewConfigure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CalendarView+HeaderViewConfigure.swift"; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 				872D6A522042DCEB00C5E73C /* EventCell */,
 				879FB3AF2039EECE00033E0E /* AgendaViewController.swift */,
 				873F6F5A2041AB5000F3F950 /* AgendaViewController+ScrollDelegate.swift */,
+				872D6A562042E7C100C5E73C /* AgendaViewController+Decorator.swift */,
 				879FB3B82039F23600033E0E /* AgendaViewModel.swift */,
 				879FB3BC2039F9A900033E0E /* DayViewModel.swift */,
 				879FB3E6203ABF4E00033E0E /* AgendaViewUpdate.swift */,
@@ -413,6 +416,7 @@
 				87FB4259203024070003C974 /* WeekDaysTitleView.swift in Sources */,
 				8775BBBA2030C0F7005DAF59 /* CalendarView+Delegate.swift in Sources */,
 				879FB3BF2039FA5600033E0E /* EventCellViewModel.swift in Sources */,
+				872D6A572042E7C100C5E73C /* AgendaViewController+Decorator.swift in Sources */,
 				879FB3E5203A9BEE00033E0E /* EventsLoader.swift in Sources */,
 				87FB425B2030246A0003C974 /* DateFormatter+Util.swift in Sources */,
 				872D6A552042DD7E00C5E73C /* AgendaViewConfig.swift in Sources */,

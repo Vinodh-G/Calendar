@@ -24,9 +24,11 @@ class CalendarDayCell: UICollectionViewCell {
         super.prepareForReuse()
         dayTitleLabel.text = nil
         highlightView.isHidden = true
+        dayTitleLabel.textColor = CalendarViewConfig.defaultConfig.dayTitleColor
     }
     
     func set(selected:Bool) {
         highlightView.isHidden = !selected
+        dayTitleLabel.textColor = selected ? CalendarViewConfig.defaultConfig.dayHighlightTitleColor : CalendarViewConfig.defaultConfig.dayTitleColor
     }
 }

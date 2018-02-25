@@ -34,9 +34,6 @@ class WeekDaysTitleView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        var frm = self.bounds
-        frm.origin.y += 5.0
-        
         var weekDaylabelFrame = CGRect(
             x: 0.0,
             y: 0.0,

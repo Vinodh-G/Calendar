@@ -39,7 +39,8 @@ class EventCell: UITableViewCell {
         eventTitleLabel.font = AgendaViewConfig.defaultConfig.eventTitleFont
         eventDetailLabel.textColor = AgendaViewConfig.defaultConfig.eventDetailTitleColor
         eventDetailLabel.font = AgendaViewConfig.defaultConfig.eventDetailTitleFont
-
+        startTimeLabel.textColor = AgendaViewConfig.defaultConfig.startTimeLabelColor
+        endTimeLabel.textColor = AgendaViewConfig.defaultConfig.endTimeLabelColor
     }
     
     func updateEventDetails(){
