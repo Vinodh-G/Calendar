@@ -35,7 +35,11 @@ class EventCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        eventTitleLabel.textColor = AgendaViewConfig.defaultConfig.eventTitleColor
+        eventTitleLabel.font = AgendaViewConfig.defaultConfig.eventTitleFont
+        eventDetailLabel.textColor = AgendaViewConfig.defaultConfig.eventDetailTitleColor
+        eventDetailLabel.font = AgendaViewConfig.defaultConfig.eventDetailTitleFont
+
     }
     
     func updateEventDetails(){
@@ -58,9 +62,9 @@ class EventCell: UITableViewCell {
     func colorFor(status:EventViewModelStatus) -> UIColor {
         switch status {
         case .confirmed:
-            return .green
+            return AgendaViewConfig.defaultConfig.statusViewColorConfirmed
         default:
-            return .gray
+            return AgendaViewConfig.defaultConfig.statusViewColorNotConfirmed
         }
     }
 }

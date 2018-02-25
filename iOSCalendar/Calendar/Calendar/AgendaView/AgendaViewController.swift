@@ -8,10 +8,6 @@
 
 import UIKit
 
-internal let kCalendarMonthViewHeightFactor: CGFloat = 0.48
-internal let kDefaultTableCellHeight: CGFloat = 44.0
-internal let kMaxTableCellHeight: CGFloat = 240.0
-
 class AgendaViewController: UIViewController,
 UITableViewDelegate,
 UITableViewDataSource,
@@ -25,8 +21,10 @@ CalendarViewDelegate {
     
     var calendarMonthView: CalendarView?
     var viewModel: AgendaViewDataSource = AgendaViewModel()
-    var dateRange: DateRange = DateRange(start: Date().dateByAdding(months: -12),
-                                         months: 24,
+    
+    // Creating a date range of 4 years 2 previous years back and 2 upcoming years
+    var dateRange: DateRange = DateRange(start: Date().dateByAdding(months: -24),
+                                         months: 48,
                                          years: 0)
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,7 +49,7 @@ CalendarViewDelegate {
     
     func configureInitialLayout() {
         self.navigationController?.isNavigationBarHidden = true
-        calendarContainerViewHeightConstraint.constant = view.bounds.size.height * kCalendarMonthViewHeightFactor
+        calendarContainerViewHeightConstraint.constant = view.bounds.size.height * AgendaViewConfig.defaultConfig.heightFactor
         agendaViewTopConstriant.constant = calendarContainerViewHeightConstraint.constant
         configureCalendarMonthView()
         configureHeader()
@@ -80,20 +78,31 @@ CalendarViewDelegate {
     func configureHeader() {
         guard let calendarView = calendarMonthView else { return }
         let button = UIButton(type: .custom)
-        button.backgroundColor = .purple
+        button.setImage(UIImage(named: "today_icon"), for: .normal)
+        button.imageEdgeInsets = UIEdgeInsets(top: 2, left: 2, bottom: 2, right: 2)
         button.addTarget(self, action: #selector(AgendaViewController.showTodaysAgenda), for: .touchUpInside)
         calendarView.configureRight(barButton: button)
-        
+
         let leftbutton = UIButton(type: .custom)
-        leftbutton.backgroundColor = .purple
+        leftbutton.setImage(UIImage(named: "menu_icon"), for: .normal)
+        leftbutton.imageEdgeInsets = UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4)
         leftbutton.addTarget(self, action: #selector(AgendaViewController.showTodaysAgenda), for: .touchUpInside)
-        calendarView.configureLeft(barButton: button)
+        calendarView.configureLeft(barButton: leftbutton)
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    open override var supportedInterfaceOrientations: UIInterfaceOrientationMask{
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            return .portrait
+        } else {
+            return .landscape
+        }
+    }
+    
 
     // MARK: - Table view data source
 
@@ -133,6 +142,7 @@ CalendarViewDelegate {
     // MARK: - TableView Updates
     
     func handleViewUpdates(update:AgendaViewUpdate) {
+        tableView.reloadData()
         // TODO: curently not using it needs to be rectified for
         // tableView updates, when loading more events using load more
     }

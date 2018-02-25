@@ -84,7 +84,6 @@ class CalendarHeaderView: UIView, CalendarHeaderViewAction {
     override func layoutSubviews() {
         super.layoutSubviews()
         monthTitleView.layoutIfNeeded()
-        monthTitleView.backgroundColor = UIColor.blue
     }
  
     @objc func handleTap(sender:Any?) {

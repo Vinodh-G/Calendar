@@ -12,8 +12,7 @@ extension CalendarView {
     
     func setUpHeaderView() {
         let layoutMargins = safeAreaLayoutGuide
-        headerView = CalendarHeaderView(frame: CGRect(x: 0, y: 0, width: bounds.size.width, height: CalendarView.headerHieght))
-        headerView.backgroundColor = UIColor.gray
+        headerView = CalendarHeaderView(frame: CGRect(x: 0, y: 0, width: bounds.size.width, height: defaultConfig.headerHieght))
         headerView.didTapOnHeaderBlock = { [unowned self] (sender) in
             if let calViewdelegate = self.delegate {
                 calViewdelegate.didTapOnHeader()
@@ -24,20 +23,19 @@ extension CalendarView {
         headerView.topAnchor.constraint(equalTo: layoutMargins.topAnchor).isActive = true
         headerView.leadingAnchor.constraint(equalTo: layoutMargins.leadingAnchor).isActive = true
         headerView.trailingAnchor.constraint(equalTo: layoutMargins.trailingAnchor).isActive = true
-        headerView.heightAnchor.constraint(equalToConstant: CalendarView.headerHieght).isActive = true
+        headerView.heightAnchor.constraint(equalToConstant: defaultConfig.headerHieght).isActive = true
     }
     
     func setUpWeekTitileView() {
         let layoutMargins = safeAreaLayoutGuide
         weekTitleView = WeekDaysTitleView()
-        weekTitleView.backgroundColor = UIColor.gray
         addSubview(weekTitleView)
         
         weekTitleView.translatesAutoresizingMaskIntoConstraints = false
-        weekTitleView.topAnchor.constraint(equalTo: layoutMargins.topAnchor, constant:CalendarView.headerHieght).isActive = true
+        weekTitleView.topAnchor.constraint(equalTo: layoutMargins.topAnchor, constant:defaultConfig.headerHieght).isActive = true
         weekTitleView.leadingAnchor.constraint(equalTo: layoutMargins.leadingAnchor).isActive = true
         weekTitleView.trailingAnchor.constraint(equalTo: layoutMargins.trailingAnchor).isActive = true
-        weekTitleView.heightAnchor.constraint(equalToConstant: CalendarView.weekTitleHieght).isActive = true
+        weekTitleView.heightAnchor.constraint(equalToConstant: defaultConfig.weekTitleHieght).isActive = true
     }
     
     func setUpCollectionView() {
@@ -57,7 +55,7 @@ extension CalendarView {
         let layoutMargins = safeAreaLayoutGuide
 
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.topAnchor.constraint(equalTo: layoutMargins.topAnchor, constant:CalendarView.headerHieght + CalendarView.weekTitleHieght).isActive = true
+        collectionView.topAnchor.constraint(equalTo: layoutMargins.topAnchor, constant:defaultConfig.headerHieght + defaultConfig.weekTitleHieght).isActive = true
         collectionView.leadingAnchor.constraint(equalTo: layoutMargins.leadingAnchor).isActive = true
         collectionView.trailingAnchor.constraint(equalTo: layoutMargins.trailingAnchor).isActive = true
         collectionView.bottomAnchor.constraint(equalTo: layoutMargins.bottomAnchor).isActive = true

@@ -17,8 +17,9 @@ class MonthTitleView: UIView {
                                 height: self.bounds.size.height)
         
         let label = UILabel(frame: monthlabelFrame)
-        label.backgroundColor = UIColor.red
         label.textAlignment = .center
+        label.font = CalendarViewConfig.defaultConfig.headerFont
+        label.textColor = CalendarViewConfig.defaultConfig.headerTitleColor
         self.addSubview(label)
         
         label.translatesAutoresizingMaskIntoConstraints = false

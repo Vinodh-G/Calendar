@@ -23,7 +23,8 @@ class WeekDaysTitleView: UIView {
     func setUp(){
         for day in viewModel.startDay...viewModel.endDay {
             let weekdayLabel = UILabel()
-            weekdayLabel.font = UIFont.systemFont(ofSize: 14)
+            weekdayLabel.font = CalendarViewConfig.defaultConfig.weekHeaderFont
+            weekdayLabel.textColor = CalendarViewConfig.defaultConfig.weekTitleColor
             weekdayLabel.text = viewModel.titleFor(day: day)
             weekdayLabel.textAlignment = NSTextAlignment.center
             self.addSubview(weekdayLabel)

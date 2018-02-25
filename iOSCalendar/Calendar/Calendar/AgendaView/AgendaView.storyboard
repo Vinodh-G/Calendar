@@ -8,6 +8,11 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="HelveticaNeue.ttc">
+            <string>HelveticaNeue-Bold</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Calendar-->
         <scene sceneID="glo-qs-hZd">
@@ -48,13 +53,13 @@
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="Tat-xg-lX1"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pge-zo-qvC">
                                                     <rect key="frame" x="84" y="1" width="2" height="51.5"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="backgroundColor" red="0.15873322595245062" green="0.80882812500000001" blue="0.39926594610955063" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="2" id="Sot-af-COx"/>
                                                     </constraints>
@@ -69,7 +74,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" red="0.57671874999999995" green="0.40556292110438863" blue="0.083159634221606271" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstItem="r0g-Rs-2nX" firstAttribute="leading" secondItem="GNA-TL-OiG" secondAttribute="leading" constant="15" id="2Tf-5g-bsx"/>
                                                 <constraint firstItem="Tfu-U3-87d" firstAttribute="top" secondItem="6Tj-Bm-6lP" secondAttribute="bottom" constant="2" id="BjV-W4-JMR"/>

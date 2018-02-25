@@ -9,10 +9,7 @@
 import UIKit
 
 let kDayCellId = "DayCellId"
-let kHeaderHeightiPhone: CGFloat = 44.0
-let kHeaderHeightiPad: CGFloat = 64.0
-let kWeekTitleHeightiPhone: CGFloat = 20.0
-let kWeekTitleHeightiPad: CGFloat = 24.0
+
 
 protocol CalendarViewDatasource {
     func startDate() -> Date
@@ -43,7 +40,8 @@ class CalendarView: UIView {
         }
     }
     var viewModel: CalendarViewModel = CalendarViewModel()
-    var isMonthViewVisibile: Bool = true
+    var defaultConfig: CalendarViewConfig = CalendarViewConfig.defaultConfig
+    
     var calendarLayout: CalendarMonthLayout {
         return self.collectionView.collectionViewLayout as! CalendarMonthLayout
     }
@@ -75,7 +73,6 @@ class CalendarView: UIView {
         setUpHeaderView()
         setUpWeekTitileView()
         setUpCollectionView()
-        backgroundColor = .black
     }
 
     
@@ -132,21 +129,5 @@ class CalendarView: UIView {
         guard let month = viewModel.monthFor(date: date) else { return }
         guard let monthIndex = viewModel.months.index(where: { $0.startDate == month.startDate }) else { return }
         collectionView.scrollToItem(at: IndexPath(item: 0, section: monthIndex), at: .left, animated: animated)
-    }
-}
-
-extension CalendarView {
-    static var headerHieght : CGFloat {
-        switch UIDevice.current.userInterfaceIdiom {
-        case .phone : return kHeaderHeightiPhone
-        default : return kHeaderHeightiPad
-        }
-    }
-    
-    static var weekTitleHieght : CGFloat {
-        switch UIDevice.current.userInterfaceIdiom {
-        case .phone : return kWeekTitleHeightiPhone
-        default : return kWeekTitleHeightiPad
-        }
     }
 }

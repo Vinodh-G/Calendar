@@ -57,6 +57,8 @@ class AgendaViewModel: AgendaViewDataSource{
         return day.date
     }
     
+    // API for fetching events from the Calendar, based on the date range passed as parameter this fetches the vents between the dates,
+    // further Api can be used in terms of load more events either forward (upcoming dates) and backward (previous dates) based on the date range passed this will fetch the evnts poppulate the view model with the evenst and calls the completionBlock with the AgendaViewUpdate details.
     func loadEvents(requestParam:loadEventsRequestParam,
                     completionBlock:@escaping loadEventsCompletionBlock) {
         
