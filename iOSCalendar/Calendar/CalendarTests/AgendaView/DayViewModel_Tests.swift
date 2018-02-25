@@ -28,6 +28,18 @@ class DayViewModel_Tests: XCTestCase {
         super.tearDown()
     }
     
+    func testHasEventTrue(){
+        let dayViewModel = DayViewModel(date: dateJan262018())
+        let eventModel = EventCellViewModel(calendarEvent: EKEvent(eventStore: store))
+        dayViewModel.add(event: eventModel)
+        XCTAssertTrue(dayViewModel.hasEvents)
+    }
+    
+    func testHasEventFalse(){
+        let dayViewModel = DayViewModel(date: dateJan262018())
+        XCTAssertFalse(dayViewModel.hasEvents)
+    }
+    
     func testDayViewModelTitleJan26() {
         let dayViewModel = DayViewModel(date: dateJan262018())
         XCTAssertEqual(dayViewModel.title, "Fri, 26 Jan-18")
