@@ -124,7 +124,6 @@ CalendarViewDelegate {
     func handleViewUpdates(update:AgendaViewUpdate) {
         // TODO: curently not using it needs to be rectified for
         // tableView updates, when loading more events using load more
-        return
     }
         
     func scrollAgendaViewTo(date:Date, animated:Bool){

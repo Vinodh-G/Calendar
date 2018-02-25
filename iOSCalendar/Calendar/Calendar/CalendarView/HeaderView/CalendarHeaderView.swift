@@ -58,12 +58,12 @@ class CalendarHeaderView: UIView, CalendarHeaderViewAction {
         didSet {
             guard let button = leftButton else { return }
             self.addSubview(button)
-            let margins = safeAreaLayoutGuide
+            let margins = layoutMarginsGuide
             button.translatesAutoresizingMaskIntoConstraints = false
             button.leadingAnchor.constraint(equalTo: margins.leadingAnchor,  constant:0).isActive = true
-            button.heightAnchor.constraint(equalToConstant: CalendarHeaderView.buttonSize.height)
-            button.widthAnchor.constraint(equalToConstant: CalendarHeaderView.buttonSize.width)
-            button.centerYAnchor.constraint(equalTo: margins.centerYAnchor)
+            button.heightAnchor.constraint(equalToConstant: CalendarHeaderView.buttonSize.height).isActive = true
+            button.widthAnchor.constraint(equalToConstant: CalendarHeaderView.buttonSize.width).isActive = true
+            button.centerYAnchor.constraint(equalTo: margins.centerYAnchor).isActive = true
         }
     }
     
@@ -72,12 +72,12 @@ class CalendarHeaderView: UIView, CalendarHeaderViewAction {
         didSet {
             guard let button = rightButton else { return }
             self.addSubview(button)
-            let margins = safeAreaLayoutGuide
+            let margins = layoutMarginsGuide
             button.translatesAutoresizingMaskIntoConstraints = false
             button.trailingAnchor.constraint(equalTo: margins.trailingAnchor,  constant:0).isActive = true
-            button.heightAnchor.constraint(equalToConstant: CalendarHeaderView.buttonSize.height)
-            button.widthAnchor.constraint(equalToConstant: CalendarHeaderView.buttonSize.width)
-            button.centerYAnchor.constraint(equalTo: margins.centerYAnchor)
+            button.heightAnchor.constraint(equalToConstant: CalendarHeaderView.buttonSize.height).isActive = true
+            button.widthAnchor.constraint(equalToConstant: CalendarHeaderView.buttonSize.width).isActive = true
+            button.centerYAnchor.constraint(equalTo: margins.centerYAnchor).isActive = true
         }
     }
     

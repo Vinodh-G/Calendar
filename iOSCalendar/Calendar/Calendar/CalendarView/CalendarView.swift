@@ -133,21 +133,6 @@ class CalendarView: UIView {
         guard let monthIndex = viewModel.months.index(where: { $0.startDate == month.startDate }) else { return }
         collectionView.scrollToItem(at: IndexPath(item: 0, section: monthIndex), at: .left, animated: animated)
     }
-    
-//    func expandMonthView(expand:Bool) {
-//        
-//        let newHeight = expand ? 343 : CalendarView.headerHieght
-//        let newFrame = CGRect(x: self.frame.origin.x,
-//                              y: self.frame.origin.y,
-//                              width: self.frame.width,
-//                              height: newHeight)
-//        self.isMonthViewVisibile = expand
-//                
-//        UIView.animate(withDuration: 0.3, animations: {
-//            self.frame = newFrame
-//        },
-//                       completion:nil)
-//    }
 }
 
 extension CalendarView {
