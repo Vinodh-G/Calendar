@@ -12,14 +12,12 @@ protocol DayViewDatasource {
 
     var title: String { get }
     var date: Date { get set }
-    func eventsCount() -> Int
-    func eventFor(index: Int) -> EventViewDatasource
-    func add(event:EventViewDatasource)
-    func remove(event:EventViewDatasource)
+    var hasEvents: Bool { get }
+    var events: [EventViewDatasource] { get set }
 }
 
 class DayViewModel: DayViewDatasource {
-
+    
     var date: Date
     var events: [EventViewDatasource] = []
     
@@ -30,21 +28,11 @@ class DayViewModel: DayViewDatasource {
     var title: String {
         return DateFormatter.shared.dateTitleFor(date: date)
     }
-    
-    func eventsCount() -> Int {
-        // If there is not event for a given day, we are returning 1 as event count
-        // for displaying "No Events"
-        return events.count > 0 ? events.count : 1
+
+    var hasEvents: Bool {
+        return events.count > 0 ? true : false
     }
-    
-    func eventFor(index: Int) -> EventViewDatasource {
-        if events.count > 0 {
-            return events[index]
-        } else {
-            return NoEventViewModel(date: date)
-        }
-    }
-    
+
     func add(event:EventViewDatasource) {
         events.append(event)
     }

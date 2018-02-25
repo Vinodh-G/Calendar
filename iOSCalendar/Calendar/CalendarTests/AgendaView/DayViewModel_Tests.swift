@@ -40,25 +40,27 @@ class DayViewModel_Tests: XCTestCase {
     
     func testDayViewModelCountWhenNoEvents() {
         let dayViewModel = DayViewModel(date: dateJan262018())
-        XCTAssertEqual(dayViewModel.eventsCount(), 1) // By default if there is no events in the dayviewmodel, the count will be 1, which will return NoEventViewmodel
+        XCTAssertFalse(dayViewModel.hasEvents)
+        XCTAssertEqual(dayViewModel.events.count, 0) // By default if there is no events in the dayviewmodel, the count will be 0
     }
     
     func testDayViewModelCountWithOneEvents() {
         let dayViewModel = DayViewModel(date: dateJan262018())
-        XCTAssertEqual(dayViewModel.eventsCount(), 1) // By default if there is no events in the dayviewmodel, the count will be 1, which will return NoEventViewmodel
-        let eventModel = EventViewModel(calendarEvent: EKEvent(eventStore: store))
+        XCTAssertFalse(dayViewModel.hasEvents)
+        XCTAssertEqual(dayViewModel.events.count, 0) // By default if there is no events in the dayviewmodel, the count will be 0
+        let eventModel = EventCellViewModel(calendarEvent: EKEvent(eventStore: store))
         dayViewModel.add(event: eventModel)
         
-        XCTAssertEqual(dayViewModel.eventsCount(), 1) // the event count is one becuase when there is valid event, no event count doesnt matter,
+        XCTAssertEqual(dayViewModel.events.count, 1) // the event count is one becuase when there is valid event, no event count doesnt matter,
     }
     
     func testDayViewModelCountRemoveEvent() {
         let dayViewModel = DayViewModel(date: dateJan262018())
-        let eventModel = EventViewModel(calendarEvent: EKEvent(eventStore: store))
+        let eventModel = EventCellViewModel(calendarEvent: EKEvent(eventStore: store))
         dayViewModel.add(event: eventModel)
-        XCTAssertEqual(dayViewModel.eventsCount(), 1) // one valid event view model
+        XCTAssertEqual(dayViewModel.events.count, 1) // one valid event view model
         dayViewModel.remove(event: eventModel)
-        XCTAssertEqual(dayViewModel.eventsCount(), 1) // one NO event EVent view model
+        XCTAssertEqual(dayViewModel.events.count, 0) // one NO event EVent view model
     }
     
     func dateJan262018() -> Date {

@@ -31,7 +31,10 @@ extension AgendaViewController : UIScrollViewDelegate {
     }
     
     func scrollCalendarViewForVisibleDay() {
-        if let topCellIndexPath = self.tableView.indexPathsForVisibleRows?[0] {
+        
+        if let indexPaths = tableView.indexPathsForVisibleRows,
+            indexPaths.count > 0 {
+            let topCellIndexPath = indexPaths[0] 
             let date = viewModel.dateFor(indexPath: topCellIndexPath)
             guard let calendarView = calendarMonthView else { return }
             calendarView.scrollTo(date: date, animated: true)

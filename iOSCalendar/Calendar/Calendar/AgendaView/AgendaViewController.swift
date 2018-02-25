@@ -9,6 +9,8 @@
 import UIKit
 
 internal let kCalendarMonthViewHeightFactor: CGFloat = 0.48
+internal let kDefaultTableCellHeight: CGFloat = 44.0
+internal let kMaxTableCellHeight: CGFloat = 240.0
 
 class AgendaViewController: UIViewController,
 UITableViewDelegate,
@@ -53,6 +55,9 @@ CalendarViewDelegate {
         agendaViewTopConstriant.constant = calendarContainerViewHeightConstraint.constant
         configureCalendarMonthView()
         configureHeader()
+        
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = kDefaultTableCellHeight
     }
     
     func configureCalendarMonthView() {
@@ -98,18 +103,24 @@ CalendarViewDelegate {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let day = viewModel.days[section]
-        return day.eventsCount()
+        return day.hasEvents ? day.events.count : 1
     }
 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath)
-        let day = viewModel.days[indexPath.section]
-        let event = day.eventFor(index: indexPath.row)
-        
-        cell.textLabel?.text = event.title
 
-        return cell
+        let dayVM = viewModel.days[indexPath.section]
+        
+        if dayVM.hasEvents {
+            let cell = tableView.dequeueReusableCell(withIdentifier: EventCell.kEventCellId, for: indexPath) as! EventCell
+            let eventVM = dayVM.events[indexPath.row]
+            cell.viewModel = eventVM
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: NoEventsCell.kNoEventsCellId, for: indexPath) as! NoEventsCell
+            cell.viewModel = NoEventsViewModel()
+            return cell
+        }
     }
     
     // MARK: - Table view delegate
@@ -127,7 +138,9 @@ CalendarViewDelegate {
     }
         
     func scrollAgendaViewTo(date:Date, animated:Bool){
-        if let indexPath = viewModel.indexPathFor(date: date) {
+        if let indexPath = viewModel.indexPathFor(date: date),
+            tableView.numberOfSections > indexPath.section,
+            tableView.numberOfRows(inSection: indexPath.section) > indexPath.row {
             tableView.scrollToRow(at: indexPath, at: .top, animated: animated)
         }
     }

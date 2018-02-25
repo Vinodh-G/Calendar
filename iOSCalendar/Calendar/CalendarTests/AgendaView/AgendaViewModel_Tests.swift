@@ -68,7 +68,8 @@ class AgendaViewModel_Tests: XCTestCase {
         agendaModel.days = agendaModel.createDaysFor(dateRange: dateRange)
         _ = agendaModel.populateEventsFrom(events: sampleEvents(Count: 13))
         let day = agendaModel.days[0]
-        XCTAssertEqual(day.eventsCount(), 1)
+        XCTAssertFalse(day.hasEvents)
+        XCTAssertEqual(day.events.count, 0)
     }
     
     func testPopulateEventsFromDay2() {
@@ -79,7 +80,7 @@ class AgendaViewModel_Tests: XCTestCase {
         agendaModel.days = agendaModel.createDaysFor(dateRange: dateRange)
         _ = agendaModel.populateEventsFrom(events: sampleEvents(Count: 27))
         let day = agendaModel.days[1]
-        XCTAssertEqual(day.eventsCount(), 6)
+        XCTAssertEqual(day.events.count, 6)
     }
     
     func testPopulateEventsFromDay3() {
@@ -90,7 +91,7 @@ class AgendaViewModel_Tests: XCTestCase {
         agendaModel.days = agendaModel.createDaysFor(dateRange: dateRange)
         _ = agendaModel.populateEventsFrom(events: sampleEvents(Count: 27))
         let day = agendaModel.days[2]
-        XCTAssertEqual(day.eventsCount(), 6)
+        XCTAssertEqual(day.events.count, 6)
     }
     
     func testPopulateEventsFromDay7() {
@@ -101,7 +102,8 @@ class AgendaViewModel_Tests: XCTestCase {
         agendaModel.days = agendaModel.createDaysFor(dateRange: dateRange)
         _ = agendaModel.populateEventsFrom(events: sampleEvents(Count: 13))
         let day = agendaModel.days[60]
-        XCTAssertEqual(day.eventsCount(), 1)
+        XCTAssertFalse(day.hasEvents)
+        XCTAssertEqual(day.events.count, 0)
     }
     
     func testIndexPathFOrDateNil() {

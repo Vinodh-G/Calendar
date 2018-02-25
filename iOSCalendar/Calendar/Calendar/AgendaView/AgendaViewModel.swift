@@ -105,9 +105,9 @@ class AgendaViewModel: AgendaViewDataSource{
         let formatter = DateFormatter.shared
         for event in sortedEvents {
             
-            if let dayVM = daysCache[formatter.dateTitleFor(date: event.startDate)] {
-                let eventVM = EventViewModel(calendarEvent: event)
-                dayVM.add(event: eventVM)
+            if var dayVM = daysCache[formatter.dateTitleFor(date: event.startDate)] {
+                let eventVM = EventCellViewModel(calendarEvent: event)
+                dayVM.events.append(eventVM)
             }
         }
         return viewUpdate
