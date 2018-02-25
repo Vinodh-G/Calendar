@@ -10,8 +10,9 @@ import Foundation
 
 public let kFullDateFormat = "yyyy-MM-dd HH:mm:ss"
 public let kDateFormat = "yyyy-MM-dd"
+public let kDayTitleFormat = "EEE, d MMM-yy"
 public let k24TimeFormat = "HH:mm"
-public let kFullMonthNameFormat = "MMMM-yy"
+public let kFullMonthNameFormat = "MMMM"
 extension DateFormatter {
 
     public static let shared : DateFormatter = {
@@ -28,9 +29,7 @@ extension DateFormatter {
     }
     
     public func dateTitleFor(date:Date) -> String {
-        self.dateFormat = kDateFormat
-        self.dateStyle = .medium
-        self.timeStyle = .none
+        self.dateFormat = kDayTitleFormat
         let dateTitle = self.string(from: date)
         return dateTitle
     }

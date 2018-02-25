@@ -11,7 +11,7 @@ import UIKit
 internal let kCalendarMonthViewHeightFactoriPhone: CGFloat = 0.48
 internal let kCalendarMonthViewHeightFactoriPad: CGFloat = 0.33
 internal let kDefaultTableCellHeight: CGFloat = 44.0
-internal let kAgendaViewHeaderHeightiPhone: CGFloat = 74.0
+internal let kAgendaViewHeaderHeightiPhone: CGFloat = 58.0
 internal let kAgendaViewHeaderHeightiPad: CGFloat = 78.0
 
 class AgendaViewConfig {

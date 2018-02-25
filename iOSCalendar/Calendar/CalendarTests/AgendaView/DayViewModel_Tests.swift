@@ -30,12 +30,12 @@ class DayViewModel_Tests: XCTestCase {
     
     func testDayViewModelTitleJan26() {
         let dayViewModel = DayViewModel(date: dateJan262018())
-        XCTAssertEqual(dayViewModel.title, "Jan 26, 2018")
+        XCTAssertEqual(dayViewModel.title, "Fri, 26 Jan-18")
     }
     
     func testDayViewModelTitleFeb14() {
         let dayViewModel = DayViewModel(date: dateFeb142019())
-        XCTAssertEqual(dayViewModel.title, "Feb 14, 2019")
+        XCTAssertEqual(dayViewModel.title, "Thu, 14 Feb-19")
     }
     
     func testDayViewModelCountWhenNoEvents() {

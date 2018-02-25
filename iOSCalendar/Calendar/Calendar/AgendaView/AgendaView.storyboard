@@ -160,16 +160,16 @@
                             <constraint firstItem="Sgb-zf-VV3" firstAttribute="leading" secondItem="e4g-lj-ONL" secondAttribute="leading" id="2qK-b4-HlA"/>
                             <constraint firstItem="Sgb-zf-VV3" firstAttribute="trailing" secondItem="e4g-lj-ONL" secondAttribute="trailing" id="3rE-nh-qXB"/>
                             <constraint firstItem="oIK-fz-s1b" firstAttribute="trailing" secondItem="e4g-lj-ONL" secondAttribute="trailing" id="6ji-iO-vhc"/>
-                            <constraint firstItem="Sgb-zf-VV3" firstAttribute="top" secondItem="o49-1K-T9U" secondAttribute="top" constant="326" id="HiD-Rf-n5v"/>
+                            <constraint firstItem="Sgb-zf-VV3" firstAttribute="top" secondItem="e4g-lj-ONL" secondAttribute="top" constant="262" id="BD4-78-BRm"/>
                             <constraint firstItem="oIK-fz-s1b" firstAttribute="top" secondItem="e4g-lj-ONL" secondAttribute="top" id="UvG-ay-E3I"/>
                             <constraint firstItem="Sgb-zf-VV3" firstAttribute="bottom" secondItem="e4g-lj-ONL" secondAttribute="bottom" id="ZLO-db-owd"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="e4g-lj-ONL"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Calendar" id="RUo-v0-g90"/>
+                    <navigationItem key="navigationItem" title="Calendar" largeTitleDisplayMode="always" id="RUo-v0-g90"/>
                     <connections>
                         <outlet property="agendaContainerView" destination="Sgb-zf-VV3" id="0Dd-Mb-yh5"/>
-                        <outlet property="agendaViewTopConstriant" destination="HiD-Rf-n5v" id="Q7g-VW-KQI"/>
+                        <outlet property="agendaViewTopConstriant" destination="BD4-78-BRm" id="RVi-k1-9I5"/>
                         <outlet property="calendarContainerView" destination="oIK-fz-s1b" id="2tu-S1-lHO"/>
                         <outlet property="calendarContainerViewHeightConstraint" destination="yko-B8-zLT" id="IZ6-jv-cYW"/>
                         <outlet property="tableView" destination="AXG-E2-c26" id="KUw-l3-aak"/>
