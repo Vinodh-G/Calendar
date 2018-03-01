@@ -25,8 +25,8 @@ CalendarViewDelegate {
     
     // Creating a date range of 2 years 1 previous years back and 1 upcoming years
     var dateRange: DateRange = DateRange(start: Date().dateByAdding(months: -12),
-                                         months: 24,
-                                         years: 0)
+                                         months: 0,
+                                         years: 2)
     override func viewDidLoad() {
         super.viewDidLoad()
         configureInitialLayout()
@@ -47,50 +47,6 @@ CalendarViewDelegate {
         viewModel.selectedDate = today
         calendarView.set(selectedDate: today, animated: false)
         expandCalendarMonthView(expand: false)
-    }
-    
-
-    func configureInitialLayout() {
-        self.navigationController?.isNavigationBarHidden = true
-        calendarContainerViewHeightConstraint.constant = view.bounds.size.height * AgendaViewConfig.defaultConfig.heightFactor
-        agendaViewTopConstriant.constant = calendarContainerViewHeightConstraint.constant
-        configureCalendarMonthView()
-        configureHeader()
-        
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = kDefaultTableCellHeight
-    }
-    
-    func configureCalendarMonthView() {
-        guard calendarMonthView == nil else { return }
-        let calendarView = CalendarView(frame: calendarContainerView.bounds)
-        calendarContainerView.addSubview(calendarView)
-        
-        // Set the Calendar View datasource and delegate as self
-        calendarView.datasource = self
-        calendarView.delegate = self
-        calendarView.translatesAutoresizingMaskIntoConstraints = false
-        let layoutMargins = calendarContainerView.safeAreaLayoutGuide
-        calendarView.leadingAnchor.constraint(equalTo: layoutMargins.leadingAnchor).isActive = true
-        calendarView.trailingAnchor.constraint(equalTo: layoutMargins.trailingAnchor).isActive = true
-        calendarView.topAnchor.constraint(equalTo: layoutMargins.topAnchor).isActive = true
-        calendarView.bottomAnchor.constraint(equalTo: layoutMargins.bottomAnchor).isActive = true
-        calendarMonthView = calendarView
-    }
-
-    func configureHeader() {
-        guard let calendarView = calendarMonthView else { return }
-        let button = UIButton(type: .custom)
-        button.setImage(UIImage(named: "today_icon"), for: .normal)
-        button.imageEdgeInsets = UIEdgeInsets(top: 2, left: 2, bottom: 2, right: 2)
-        button.addTarget(self, action: #selector(AgendaViewController.showTodaysAgenda), for: .touchUpInside)
-        calendarView.configureRight(barButton: button)
-
-        let leftbutton = UIButton(type: .custom)
-        leftbutton.setImage(UIImage(named: "menu_icon"), for: .normal)
-        leftbutton.imageEdgeInsets = UIEdgeInsets(top: 8, left: 4, bottom: 8, right: 4)
-        leftbutton.addTarget(self, action: #selector(AgendaViewController.showTodaysAgenda), for: .touchUpInside)
-        calendarView.configureLeft(barButton: leftbutton)
     }
     
     override func didReceiveMemoryWarning() {
@@ -141,7 +97,7 @@ CalendarViewDelegate {
         // tableView updates, when loading more events using load more
     }
         
-    func scrollAgendaViewTo(date:Date, animated:Bool){
+    private func scrollAgendaViewTo(date:Date, animated:Bool){
         if let indexPath = viewModel.indexPathFor(date: date),
             tableView.numberOfSections > indexPath.section,
             tableView.numberOfRows(inSection: indexPath.section) > indexPath.row {
@@ -175,5 +131,76 @@ CalendarViewDelegate {
     func didTapOnHeader() {
         // TODO: tobe looked into, for testsing added this code
         expandCalendarMonthView(expand: !(agendaViewTopConstriant.constant > AgendaViewConfig.defaultConfig.headerHieght))
+    }
+    
+    //MARK: Orientations
+    
+    override var shouldAutorotate: Bool {
+        return UIDevice.current.userInterfaceIdiom == .pad
+    }
+    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return UIDevice.current.userInterfaceIdiom == .pad ? .landscape : .portrait
+    }
+    
+    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
+        coordinator.animate(alongsideTransition: { (context) in
+            self.updateContainerLayoutsConstraint()
+        }, completion: nil)
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        coordinator.animate(alongsideTransition: { (context) in
+            self.calendarMonthView?.reloadCalendarView()
+        })
+    }
+    
+    //MARK: Private
+    private func configureInitialLayout() {
+        self.navigationController?.isNavigationBarHidden = true
+        updateContainerLayoutsConstraint()
+        configureCalendarMonthView()
+        configureHeader()
+        
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = kDefaultTableCellHeight
+    }
+    
+    private func configureCalendarMonthView() {
+        guard calendarMonthView == nil else { return }
+        let calendarView = CalendarView(frame: calendarContainerView.bounds)
+        calendarContainerView.addSubview(calendarView)
+        
+        // Set the Calendar View datasource and delegate as self
+        calendarView.datasource = self
+        calendarView.delegate = self
+        calendarView.translatesAutoresizingMaskIntoConstraints = false
+        let layoutMargins = calendarContainerView.safeAreaLayoutGuide
+        calendarView.leadingAnchor.constraint(equalTo: layoutMargins.leadingAnchor).isActive = true
+        calendarView.trailingAnchor.constraint(equalTo: layoutMargins.trailingAnchor).isActive = true
+        calendarView.topAnchor.constraint(equalTo: layoutMargins.topAnchor).isActive = true
+        calendarView.bottomAnchor.constraint(equalTo: layoutMargins.bottomAnchor).isActive = true
+        calendarMonthView = calendarView
+    }
+    
+    private func configureHeader() {
+        guard let calendarView = calendarMonthView else { return }
+        let button = UIButton(type: .custom)
+        button.setImage(UIImage(named: "today_icon"), for: .normal)
+        button.imageEdgeInsets = UIEdgeInsets(top: 2, left: 2, bottom: 2, right: 2)
+        button.addTarget(self, action: #selector(AgendaViewController.showTodaysAgenda), for: .touchUpInside)
+        calendarView.configureRight(barButton: button)
+        
+        let leftbutton = UIButton(type: .custom)
+        leftbutton.setImage(UIImage(named: "menu_icon"), for: .normal)
+        leftbutton.imageEdgeInsets = UIEdgeInsets(top: 8, left: 4, bottom: 8, right: 4)
+        leftbutton.addTarget(self, action: #selector(AgendaViewController.showTodaysAgenda), for: .touchUpInside)
+        calendarView.configureLeft(barButton: leftbutton)
+    }
+    
+    func updateContainerLayoutsConstraint() {
+        calendarContainerViewHeightConstraint.constant = view.bounds.size.height * AgendaViewConfig.defaultConfig.heightFactor
+        agendaViewTopConstriant.constant = calendarContainerViewHeightConstraint.constant
     }
 }

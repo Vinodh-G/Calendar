@@ -9,10 +9,11 @@
 import UIKit
 
 internal let kCalendarMonthViewHeightFactoriPhone: CGFloat = 0.48
-internal let kCalendarMonthViewHeightFactoriPad: CGFloat = 0.33
+internal let kCalendarMonthViewHeightFactoriPadPortiat: CGFloat = 0.30
+internal let kCalendarMonthViewHeightFactoriPadLandscape: CGFloat = 0.42
 internal let kDefaultTableCellHeight: CGFloat = 44.0
-internal let kAgendaViewHeaderHeightiPhone: CGFloat = 58.0
-internal let kAgendaViewHeaderHeightiPad: CGFloat = 78.0
+internal let kAgendaViewTopMarginiPhone: CGFloat = 58.0
+internal let kAgendaViewTopMarginiPad: CGFloat = 78.0
 
 class AgendaViewConfig {
     
@@ -26,7 +27,7 @@ class AgendaViewConfig {
     var heightFactor : CGFloat {
         switch UIDevice.current.userInterfaceIdiom {
         case .phone : return kCalendarMonthViewHeightFactoriPhone
-        default : return kCalendarMonthViewHeightFactoriPad
+        default : return UIDevice.current.orientation.isLandscape ? kCalendarMonthViewHeightFactoriPadLandscape : kCalendarMonthViewHeightFactoriPadPortiat
         }
     }
     
@@ -39,8 +40,8 @@ class AgendaViewConfig {
     
     var headerHieght : CGFloat {
         switch UIDevice.current.userInterfaceIdiom {
-        case .phone : return kAgendaViewHeaderHeightiPhone
-        default : return kAgendaViewHeaderHeightiPad
+        case .phone : return kAgendaViewTopMarginiPhone
+        default : return kAgendaViewTopMarginiPad
         }
     }
     

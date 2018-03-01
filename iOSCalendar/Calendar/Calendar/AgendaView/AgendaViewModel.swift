@@ -79,7 +79,8 @@ class AgendaViewModel: AgendaViewDataSource{
         }
     }
     
-    func createDaysFor(dateRange:DateRange) -> [DayViewDatasource] {
+    //MARK: Private
+    private func createDaysFor(dateRange:DateRange) -> [DayViewDatasource] {
         var days: [DayViewDatasource] = []
         let formatter = DateFormatter.shared
         let numOfDays = Date.daysBetween(startDate: dateRange.start,
@@ -97,7 +98,7 @@ class AgendaViewModel: AgendaViewDataSource{
     // TODO: This api designed to make use of AgendaViewUpdate to generate the
     // tableview sections and rows update when filling the calendar events data into the viewmodel data source
     // This AgendaViewUpdate is currently not used
-    func populateEventsFrom(events:[EKEvent]) -> AgendaViewUpdate {
+    private func populateEventsFrom(events:[EKEvent]) -> AgendaViewUpdate {
         
         let viewUpdate = AgendaViewUpdate()
         let sortedEvents = events.sorted { (event1, event2) -> Bool in

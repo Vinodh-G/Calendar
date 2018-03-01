@@ -27,13 +27,13 @@ extension CalendarView : UICollectionViewDelegate, UIScrollViewDelegate {
     
     //Mark: UIScrollViewDelegate
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        if let month = visibleMonthForCurrentOffset() {
+        if let month = updatedVisibleMonthForCurrentOffset() {
             updateMonthTitleFor(visibleMonth: month)
         }
     }
     
     func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
-        if let month = visibleMonthForCurrentOffset() {
+        if let month = updatedVisibleMonthForCurrentOffset() {
             updateMonthTitleFor(visibleMonth: month)
         }
     }

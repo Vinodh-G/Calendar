@@ -58,25 +58,51 @@ class CalendarView: UIView {
         configureViewModel()
     }
     
+    override open func layoutSubviews() {
+        super.layoutSubviews()
+        layoutIfNeeded()
+        calendarLayout.itemSize = cellSize(in: self.bounds)
+        collectionView.invalidateIntrinsicContentSize()
+        if let month = viewModel.currentVisibleMonth {
+            updateMonthTitleFor(visibleMonth: month)
+        }
+    }
+    
+    //MARK: Interface
     func set(selectedDate: Date, animated: Bool) {
         viewModel.set(selectedDate: selectedDate)
         guard let selectedDay = viewModel.selectedDay else { return }
         scrollTo(day: selectedDay, animated: animated)
         
-        if let month = visibleMonthForCurrentOffset() {
+        if let month = updatedVisibleMonthForCurrentOffset() {
             updateMonthTitleFor(visibleMonth: month)
         }
     }
     
-    func setUp() {
+    func scrollTo(date: Date, animated: Bool) {
+        guard let month = viewModel.monthFor(date: date) else { return }
+        guard let monthIndex = viewModel.months.index(where: { $0.startDate == month.startDate }) else { return }
+        collectionView.scrollToItem(at: IndexPath(item: 0, section: monthIndex), at: .left, animated: animated)
+    }
+    
+    func reloadCalendarView() {
+        collectionView.reloadData()
+        if let visibleMonth = viewModel.currentVisibleMonth {
+            scrollTo(date: visibleMonth.startDate, animated: false)
+        }
+    }
+    
+    //MARK: Private
+    
+    private func setUp() {
         clipsToBounds = true
         setUpHeaderView()
         setUpWeekTitileView()
         setUpCollectionView()
     }
-
     
-    func configureViewModel() {
+    
+    private func configureViewModel() {
         if let dataSource = self.datasource {
             viewModel.createMonths(for: dataSource.startDate(), and: dataSource.endDate())
         }
@@ -88,17 +114,6 @@ class CalendarView: UIView {
         }
     }
     
-    override open func layoutSubviews() {
-        
-        super.layoutSubviews()
-        layoutIfNeeded()
-        calendarLayout.itemSize = cellSize(in: self.bounds)
-        collectionView.invalidateIntrinsicContentSize()
-        if let month = visibleMonthForCurrentOffset() {
-            updateMonthTitleFor(visibleMonth: month)
-        }
-    }
-    
     private func cellSize(in bounds: CGRect) -> CGSize {
         return CGSize(
             width:  bounds.size.width / 7.0,
@@ -106,28 +121,31 @@ class CalendarView: UIView {
         )
     }
     
-    func visibleMonthForCurrentOffset() -> CalendarMonthViewModel? {
-        guard viewModel.months.count > 0 else { return nil }
-        
-        let conentOffset = self.collectionView.contentOffset
-        let sectionIndex = calendarLayout.scrollDirection == .horizontal ? Int(conentOffset.x) / Int(collectionView.bounds.size.width) : Int(conentOffset.y) / Int(collectionView.bounds.size.height)
-        let visbileMonth = viewModel.months[sectionIndex]
-        return visbileMonth
-    }
-    
-    func updateMonthTitleFor(visibleMonth:CalendarMonthViewModel) {
-        headerView.setMonth(title: visibleMonth.monthTitle)
-    }
-   
     private func scrollTo(day: CalendarDayCellViewModel, animated: Bool) {
         guard let month = viewModel.monthFor(date: day.date) else { return }
         guard let monthIndex = viewModel.months.index(where: { $0.startDate == month.startDate }) else { return }
         collectionView.scrollToItem(at: IndexPath(item: 0, section: monthIndex), at: .left, animated: animated)
     }
     
-    func scrollTo(date: Date, animated: Bool) {
-        guard let month = viewModel.monthFor(date: date) else { return }
-        guard let monthIndex = viewModel.months.index(where: { $0.startDate == month.startDate }) else { return }
-        collectionView.scrollToItem(at: IndexPath(item: 0, section: monthIndex), at: .left, animated: animated)
+    internal func updatedVisibleMonthForCurrentOffset() -> CalendarMonthViewModel?{
+        guard viewModel.months.count > 0 else { return nil }
+
+        let conentOffset = self.collectionView.contentOffset
+        let sectionIndex = calendarLayout.scrollDirection == .horizontal ? Int(conentOffset.x) / Int(collectionView.bounds.size.width) : Int(conentOffset.y) / Int(collectionView.bounds.size.height)
+        viewModel.currentVisibleMonth = viewModel.months[sectionIndex]
+        return viewModel.currentVisibleMonth
+    }
+    
+//    internal func visibleMonthForCurrentOffset() -> CalendarMonthViewModel? {
+//        guard viewModel.months.count > 0 else { return nil }
+//
+//        let conentOffset = self.collectionView.contentOffset
+//        let sectionIndex = calendarLayout.scrollDirection == .horizontal ? Int(conentOffset.x) / Int(collectionView.bounds.size.width) : Int(conentOffset.y) / Int(collectionView.bounds.size.height)
+//        let visbileMonth = viewModel.months[sectionIndex]
+//        return visbileMonth
+//    }
+    
+    internal func updateMonthTitleFor(visibleMonth:CalendarMonthViewModel) {
+        headerView.setMonth(title: visibleMonth.monthTitle)
     }
 }
