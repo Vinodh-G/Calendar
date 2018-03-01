@@ -10,7 +10,7 @@ import UIKit
 
 internal let kCalendarMonthViewHeightFactoriPhone: CGFloat = 0.48
 internal let kCalendarMonthViewHeightFactoriPadPortiat: CGFloat = 0.30
-internal let kCalendarMonthViewHeightFactoriPadLandscape: CGFloat = 0.42
+internal let kCalendarMonthViewHeightFactoriPadLandscape: CGFloat = 0.45
 internal let kDefaultTableCellHeight: CGFloat = 44.0
 internal let kAgendaViewTopMarginiPhone: CGFloat = 58.0
 internal let kAgendaViewTopMarginiPad: CGFloat = 78.0
