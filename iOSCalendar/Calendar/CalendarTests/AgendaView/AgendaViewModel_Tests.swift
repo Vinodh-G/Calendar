@@ -29,43 +29,49 @@ class AgendaViewModel_Tests: XCTestCase {
     }
     
     func testCreateDaysForRange23Months() {
-        let agendaModel = AgendaViewModel()
-        
-        // Creates a date range from 23 months from feb -17 to Dec - 18
         let dateRange = DateRange(start: dateFeb142018().dateByAdding(months: -12),
                                   months: 23,
                                   years: 0)
+        let agendaModel = AgendaViewModel(inDateRange: dateRange)
+        
+        // Creates a date range from 23 months from feb -17 to Dec - 18
+
         let days = agendaModel.createDaysFor(dateRange:dateRange)
         XCTAssertEqual(days.count, 699)
     }
     
     func testCreateDaysForRange48Months() {
-        let agendaModel = AgendaViewModel()
         
         // Creates a date range from 23 months from feb -17 to Dec - 18
         let dateRange = DateRange(start: dateJan262020().dateByAdding(months: 0),
                                   months: 48,
                                   years: 0)
+        let agendaModel = AgendaViewModel(inDateRange: dateRange)
+
         let days = agendaModel.createDaysFor(dateRange:dateRange)
         XCTAssertEqual(days.count, 1461)
     }
     
     func testPopulateEventsFromCount() {
-        let agendaModel = AgendaViewModel()
+
         let dateRange = DateRange(start: dateJan262020().dateByAdding(months: 0),
                                   months: 12,
                                   years: 0)
+        let agendaModel = AgendaViewModel(inDateRange: dateRange)
+
         agendaModel.days = agendaModel.createDaysFor(dateRange: dateRange)
         _ = agendaModel.populateEventsFrom(events: sampleEvents(Count: 3))
         XCTAssertEqual(agendaModel.days.count, 366)
     }
     
     func testPopulateEventsFromDay1() {
-        let agendaModel = AgendaViewModel()
         let dateRange = DateRange(start: dateJan262020().dateByAdding(months: 0),
                                   months: 12,
                                   years: 0)
+        let agendaModel = AgendaViewModel(inDateRange: dateRange)
+
         agendaModel.days = agendaModel.createDaysFor(dateRange: dateRange)
+        
         _ = agendaModel.populateEventsFrom(events: sampleEvents(Count: 13))
         let day = agendaModel.days[0]
         XCTAssertFalse(day.hasEvents)
@@ -73,10 +79,11 @@ class AgendaViewModel_Tests: XCTestCase {
     }
     
     func testPopulateEventsFromDay2() {
-        let agendaModel = AgendaViewModel()
         let dateRange = DateRange(start: dateJan262020().dateByAdding(months: 0),
                                   months: 12,
                                   years: 0)
+        let agendaModel = AgendaViewModel(inDateRange: dateRange)
+
         agendaModel.days = agendaModel.createDaysFor(dateRange: dateRange)
         _ = agendaModel.populateEventsFrom(events: sampleEvents(Count: 27))
         let day = agendaModel.days[1]
@@ -84,10 +91,11 @@ class AgendaViewModel_Tests: XCTestCase {
     }
     
     func testPopulateEventsFromDay3() {
-        let agendaModel = AgendaViewModel()
         let dateRange = DateRange(start: dateJan262020().dateByAdding(months: 0),
                                   months: 12,
                                   years: 0)
+        let agendaModel = AgendaViewModel(inDateRange: dateRange)
+
         agendaModel.days = agendaModel.createDaysFor(dateRange: dateRange)
         _ = agendaModel.populateEventsFrom(events: sampleEvents(Count: 27))
         let day = agendaModel.days[2]
@@ -95,10 +103,11 @@ class AgendaViewModel_Tests: XCTestCase {
     }
     
     func testPopulateEventsFromDay7() {
-        let agendaModel = AgendaViewModel()
         let dateRange = DateRange(start: dateJan262020().dateByAdding(months: 0),
                                   months: 12,
                                   years: 0)
+        let agendaModel = AgendaViewModel(inDateRange: dateRange)
+
         agendaModel.days = agendaModel.createDaysFor(dateRange: dateRange)
         _ = agendaModel.populateEventsFrom(events: sampleEvents(Count: 13))
         let day = agendaModel.days[60]
@@ -107,31 +116,33 @@ class AgendaViewModel_Tests: XCTestCase {
     }
     
     func testIndexPathFOrDateNil() {
-        let agendaModel = AgendaViewModel()
         let dateRange = DateRange(start: dateJan262020().dateByAdding(months: 0),
                                   months: 3,
                                   years: 0)
+        let agendaModel = AgendaViewModel(inDateRange: dateRange)
+
         agendaModel.days = agendaModel.createDaysFor(dateRange: dateRange)
         let indexPath = agendaModel.indexPathFor(date: dateApr142021())
         XCTAssertNil(indexPath)
     }
     
     func testIndexPathFOrDate() {
-        let agendaModel = AgendaViewModel()
         let dateRange = DateRange(start: dateJan262020().dateByAdding(months: 0),
                                   months: 24,
                                   years: 0)
+        let agendaModel = AgendaViewModel(inDateRange: dateRange)
         agendaModel.days = agendaModel.createDaysFor(dateRange: dateRange)
+
         let indexPath = agendaModel.indexPathFor(date: dateApr142021())
         XCTAssertEqual(indexPath?.section, 444)
         XCTAssertEqual(indexPath?.row, 0)
     }
     
     func testIndexPathForDate48Months() {
-        let agendaModel = AgendaViewModel()
         let dateRange = DateRange(start: dateFeb142018().dateByAdding(months: 0),
                                   months: 48,
                                   years: 0)
+        let agendaModel = AgendaViewModel(inDateRange: dateRange)
         agendaModel.days = agendaModel.createDaysFor(dateRange: dateRange)
         let indexPath = agendaModel.indexPathFor(date: dateJan262020())
         XCTAssertEqual(indexPath?.section, 711)
@@ -139,13 +150,13 @@ class AgendaViewModel_Tests: XCTestCase {
     }
     
     func testDateForIndexPathDate18() {
-        let agendaModel = AgendaViewModel()
-        
         //starting from feb 14 2018 the days have been created till the jan 2022, we can test piching any indexpath, to get the valid date
         
         let dateRange = DateRange(start: dateFeb142018().dateByAdding(months: 0),
                                   months: 48,
                                   years: 0)
+        let agendaModel = AgendaViewModel(inDateRange: dateRange)
+
         agendaModel.days = agendaModel.createDaysFor(dateRange: dateRange)
         let date = agendaModel.dateFor(indexPath: IndexPath(row: 26, section: 4))
         let components =  Calendar.current.dateComponents([.year, .month, .day], from: date)
@@ -155,13 +166,14 @@ class AgendaViewModel_Tests: XCTestCase {
     }
     
     func testDateForIndexPathDate31() {
-        let agendaModel = AgendaViewModel()
         
         //starting from feb 14 2018 the days have been created till the jan 2022, we can test piching any indexpath, to get the valid date
         
         let dateRange = DateRange(start: dateFeb142018().dateByAdding(months: 0),
                                   months: 48,
                                   years: 0)
+        let agendaModel = AgendaViewModel(inDateRange: dateRange)
+
         agendaModel.days = agendaModel.createDaysFor(dateRange: dateRange)
         let date = agendaModel.dateFor(indexPath: IndexPath(row: 41, section: 45))
         let components =  Calendar.current.dateComponents([.year, .month, .day], from: date)
@@ -171,13 +183,13 @@ class AgendaViewModel_Tests: XCTestCase {
     }
     
     func testDateForIndexPathDate89() {
-        let agendaModel = AgendaViewModel()
-        
         //starting from feb 14 2018 the days have been created till the jan 2022, we can test piching any indexpath, to get the valid date
         
         let dateRange = DateRange(start: dateFeb142018().dateByAdding(months: 0),
                                   months: 48,
                                   years: 0)
+        let agendaModel = AgendaViewModel(inDateRange: dateRange)
+
         agendaModel.days = agendaModel.createDaysFor(dateRange: dateRange)
         let date = agendaModel.dateFor(indexPath: IndexPath(row: 0, section: 38))
         let components =  Calendar.current.dateComponents([.year, .month, .day], from: date)
