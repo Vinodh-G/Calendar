@@ -21,23 +21,23 @@ CalendarViewDelegate {
     @IBOutlet weak var agendaViewTopConstriant: NSLayoutConstraint!
     
     var calendarMonthView: CalendarView?
-    var viewModel: AgendaViewDataSource = AgendaViewModel()
+    var viewModel: AgendaViewDataSource!
     
-    // Creating a date range of 2 years 1 previous years back and 1 upcoming years
-    var dateRange: DateRange = DateRange(start: Date().dateByAdding(months: -12),
-                                         months: 0,
-                                         years: 2)
+    static func agendaViewController(dateRange:DateRange) -> UIViewController {
+        let storyBoard = UIStoryboard.init(name: "AgendaView", bundle: nil)
+        let agendaViewController = storyBoard.instantiateViewController(withIdentifier: "agendaViewController") as! AgendaViewController
+        
+        let agendaViewModel = AgendaViewModel(inDateRange: dateRange)
+        agendaViewController.viewModel = agendaViewModel
+        return agendaViewController
+    }
+  
     override func viewDidLoad() {
         super.viewDidLoad()
         configureInitialLayout()
         addShadow(to: agendaContainerView)
-        let request = loadEventsRequestParam(dateRange: dateRange)
-        viewModel.loadEvents(requestParam: request) { [unowned self] (response) in
-            if response.success {
-                self.handleViewUpdates(update: response.updates)
-                self.scrollAgendaViewTo(date: self.viewModel.selectedDate, animated: false)
-            }
-        }
+        
+        loadEventsforDate(range: viewModel.dateRange)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -114,11 +114,11 @@ CalendarViewDelegate {
     
     // MARK: CalendarViewDatasource
     func startDate() -> Date {
-        return dateRange.start
+        return viewModel.dateRange.start
     }
     
     func endDate() -> Date {
-        return dateRange.end
+        return viewModel.dateRange.end
     }
     
     // MARK: CalendarViewDelegate
@@ -144,9 +144,9 @@ CalendarViewDelegate {
     }
     
     override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
-        coordinator.animate(alongsideTransition: { (context) in
+        coordinator.animate(alongsideTransition: nil, completion:{ (context) in
             self.updateContainerLayoutsConstraint()
-        }, completion: nil)
+        })
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -202,5 +202,15 @@ CalendarViewDelegate {
     func updateContainerLayoutsConstraint() {
         calendarContainerViewHeightConstraint.constant = view.bounds.size.height * AgendaViewConfig.defaultConfig.heightFactor
         agendaViewTopConstriant.constant = calendarContainerViewHeightConstraint.constant
+    }
+    
+    func loadEventsforDate(range:DateRange)  {
+        let request = loadEventsRequestParam(dateRange: range)
+        viewModel.loadEvents(requestParam: request) { [unowned self] (response) in
+            if response.success {
+                self.handleViewUpdates(update: response.updates)
+                self.scrollAgendaViewTo(date: self.viewModel.selectedDate, animated: false)
+            }
+        }
     }
 }

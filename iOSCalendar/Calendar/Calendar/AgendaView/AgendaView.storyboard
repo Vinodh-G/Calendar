@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Tu4-Du-Ycp">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -18,16 +18,16 @@
         <!--Calendar-->
         <scene sceneID="glo-qs-hZd">
             <objects>
-                <viewController id="UUe-Pg-wgT" customClass="AgendaViewController" customModule="Calendar" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="agendaViewController" id="UUe-Pg-wgT" customClass="AgendaViewController" customModule="Calendar" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="o49-1K-T9U">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sgb-zf-VV3">
-                                <rect key="frame" x="0.0" y="326" width="375" height="341"/>
+                                <rect key="frame" x="0.0" y="282" width="375" height="385"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="AXG-E2-c26">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="341"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="385"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="eventCellId" rowHeight="54" id="ql4-am-AwR" customClass="EventCell" customModule="Calendar" customModuleProvider="target">
@@ -147,7 +147,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oIK-fz-s1b">
-                                <rect key="frame" x="0.0" y="64" width="375" height="254"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="254"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="254" id="yko-B8-zLT"/>
@@ -177,18 +177,18 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="42h-s6-tGJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1592.8" y="940.47976011994012"/>
+            <point key="canvasLocation" x="1263" y="939"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="cbg-0Q-l4w">
             <objects>
-                <viewController id="TzU-y0-m51" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="eventDetailViewController" id="TzU-y0-m51" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ZdC-H5-o3R">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mio-cB-QZF">
-                                <rect key="frame" x="82" y="238" width="211" height="255"/>
+                                <rect key="frame" x="82" y="216" width="211" height="255"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="255" id="35C-Xv-xEi"/>
                                     <constraint firstAttribute="width" constant="211" id="VEt-KG-Z3W"/>
@@ -212,36 +212,7 @@ The selected event details from Agenda view will be populated here.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fjZ-rM-Y8n" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="780" y="1659.2203898050975"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="QTX-0F-2aq">
-            <objects>
-                <navigationController id="A1a-xh-A9G" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="JHR-3y-L0f">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="UUe-Pg-wgT" kind="relationship" relationship="rootViewController" id="IIJ-8H-kfD"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="8Lp-fI-L77" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="780" y="942"/>
-        </scene>
-        <!--Split View Controller-->
-        <scene sceneID="ozV-Ju-alF">
-            <objects>
-                <splitViewController id="Tu4-Du-Ycp" sceneMemberID="viewController">
-                    <connections>
-                        <segue destination="A1a-xh-A9G" kind="relationship" relationship="masterViewController" id="NRI-X0-7wH"/>
-                        <segue destination="TzU-y0-m51" kind="relationship" relationship="detailViewController" id="xth-Rm-U2m"/>
-                    </connections>
-                </splitViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="B0B-2u-NFT" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-97" y="1198"/>
+            <point key="canvasLocation" x="2012" y="939"/>
         </scene>
     </scenes>
 </document>

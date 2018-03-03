@@ -15,9 +15,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        let splitViewController = window!.rootViewController as! UISplitViewController
-        splitViewController.delegate = self
-        splitViewController.preferredDisplayMode = .allVisible
+        
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        self.window?.rootViewController = getCalendarRootViewController()
+        self.window?.makeKeyAndVisible()
         return true
     }
 
@@ -44,6 +45,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     }
 
     // MARK: - Split view
+    
+    func getCalendarRootViewController() -> UISplitViewController {
+        let splitViewController = UISplitViewController()
+        
+        let agendaStoryBoard = UIStoryboard.init(name: "AgendaView", bundle: nil)
+
+        // Creating a date range of 2 years 1  years back and 1 upcoming year from the current date
+        let dateRange = DateRange(start: Date().dateByAdding(months: -12), months: 0, years: 2)
+        
+        let agendaNavigationVC = UINavigationController(rootViewController: AgendaViewController.agendaViewController(dateRange: dateRange))
+        let eventDetailController = agendaStoryBoard.instantiateViewController(withIdentifier: "eventDetailViewController")
+        
+        splitViewController.viewControllers = [agendaNavigationVC, eventDetailController]
+        splitViewController.delegate = self
+        splitViewController.preferredDisplayMode = .allVisible
+        return splitViewController
+    }
     
     func splitViewController(_ splitViewController: UISplitViewController,
                              collapseSecondary secondaryViewController:UIViewController, onto primaryViewController:UIViewController) -> Bool {

@@ -35,6 +35,7 @@ struct loadEventsResponseParam{
 
 protocol AgendaViewDataSource {
     var selectedDate: Date { get set }
+    var dateRange: DateRange { get set }
     var days: [DayViewDatasource] { get set }
     func indexPathFor(date: Date) -> IndexPath?
     func dateFor(indexPath: IndexPath) -> Date
@@ -43,8 +44,14 @@ protocol AgendaViewDataSource {
 
 class AgendaViewModel: AgendaViewDataSource{
     var selectedDate: Date = Date()
+    var dateRange: DateRange
     var days: [DayViewDatasource] = []
     var daysCache: [String: DayViewDatasource] = [:]
+    
+    init(inDateRange:DateRange) {
+        dateRange = inDateRange
+        days = createDaysFor(dateRange: dateRange)
+    }
     
     func indexPathFor(date: Date) -> IndexPath?{
         guard let day = daysCache[DateFormatter.shared.dateTitleFor(date: date)] else { return nil }
@@ -59,6 +66,7 @@ class AgendaViewModel: AgendaViewDataSource{
     
     // API for fetching events from the Calendar, based on the date range passed as parameter this fetches the vents between the dates,
     // further Api can be used in terms of load more events either forward (upcoming dates) and backward (previous dates) based on the date range passed this will fetch the evnts poppulate the view model with the evenst and calls the completionBlock with the AgendaViewUpdate details.
+
     func loadEvents(requestParam:loadEventsRequestParam,
                     completionBlock:@escaping loadEventsCompletionBlock) {
         
